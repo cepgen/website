@@ -2,7 +2,7 @@ name: Documentation
 on:
   push:
 env:
-  CEPGEN_PATH: /Package/cepgen/Package
+  CEPGEN_PATH: /Package
 
 jobs:
   cepgen:
@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
     container:
       image: 'laufor/ci-images:cepgen-fedora39'
-      options: -v ${{ github.workspace }}:/Package
+      options: -v ${{ github.workspace }}:/Documentation
     steps:
     - uses: actions/checkout@v4
     - uses: seanmiddleditch/gha-setup-ninja@master
@@ -35,20 +35,19 @@ jobs:
         name: build-env
     - name: 'CepGen uncompress'
       run: |
-        mkdir -p ${{ env.CEPGEN_PATH }}/..
-        tar -xvf environment.tar -C ${{ env.CEPGEN_PATH }}/..
+        tar -xvf environment.tar -C /
 
     - uses: seanmiddleditch/gha-setup-ninja@master
 
     - name: 'Configure the build'
       run: |
-        cmake -GNinja -B /Package/build -DGH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
+        cmake -GNinja -B /Documentation/build -DGH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
 
     - name: 'Generate cepgen documentation'
-      working-directory: /Package/build
+      working-directory: /Documentation/build
       run: |
-        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Package/build/doc/.raw_modules.html -e
-        cmake --build /Package/build -- Sphinx
+        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Documentation/doc/.raw_modules.html -e
+        cmake --build /Documentation/build -- Sphinx
     #- name: 'Upload documentation'
     #  uses: burnett01/rsync-deployments@5.2.1
     #  with:
