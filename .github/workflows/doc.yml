@@ -2,7 +2,7 @@ name: Documentation
 on:
   push:
 env:
-  CEPGEN_PATH: /Package/build
+  CEPGEN_PATH: /Package/cepgen/Package
 
 jobs:
   cepgen:
@@ -34,17 +34,21 @@ jobs:
       with:
         name: build-env
     - name: 'CepGen uncompress'
-      run: tar -xvf environment.tar -C /
+      run: |
+        mkdir -p ${{ env.CEPGEN_PATH }}/..
+        tar -xvf environment.tar -C ${{ env.CEPGEN_PATH }}/..
 
     - uses: seanmiddleditch/gha-setup-ninja@master
 
-    - name: 'Generate cepgen documentation'
-      working-directory: ${{ env.CEPGEN_PATH }}
+    - name: 'Configure the build'
       run: |
-        cmake --build ${{ env.CEPGEN_PATH }}
-        cmake --build ${{ env.CEPGEN_PATH }} -- cepgenDocGenerator
-        bin/cepgenDocGenerator -o /Package/doc/.raw_modules.html -e
-        cmake --build ${{ env.CEPGEN_PATH }} -- Sphinx
+        cmake -GNinja -B /Package/build -DGH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
+
+    - name: 'Generate cepgen documentation'
+      working-directory: /Package/build
+      run: |
+        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Package/build/doc/.raw_modules.html -e
+        cmake --build /Package/build -- Sphinx
     #- name: 'Upload documentation'
     #  uses: burnett01/rsync-deployments@5.2.1
     #  with:
