@@ -8,10 +8,8 @@ jobs:
   cepgen:
     uses: cepgen/cepgen/.github/workflows/build.yml@master
   doc:
-    runs-on: ubuntu-latest
     needs: cepgen
-    strategy:
-      fail-fast: false
+    runs-on: ubuntu-latest
     container:
       image: 'laufor/ci-images:cepgen-fedora39'
       options: -v ${{ github.workspace }}:/Documentation
