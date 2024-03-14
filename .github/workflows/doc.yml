@@ -16,8 +16,13 @@ jobs:
       image: 'laufor/ci-images:cepgen-fedora39'
       options: -v ${{ github.workspace }}:/Documentation
     steps:
+    - name: 'Python requirements'
+      run: |
+        sudo pip install -r requirements.txt
+
     - uses: actions/checkout@v4
     - uses: seanmiddleditch/gha-setup-ninja@master
+
     - name: 'Install SSH Key'
       uses: shimataro/ssh-key-action@v2
       with:
@@ -25,9 +30,6 @@ jobs:
         known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
     - name: 'Add known hosts'
       run: mkdir -p ~/.ssh && ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
-    - name: Python requirements
-      run: |
-        sudo pip install -r requirements.txt
 
     - name: 'CepGen fetch'
       uses: actions/download-artifact@v4
@@ -36,8 +38,6 @@ jobs:
     - name: 'CepGen uncompress'
       run: |
         tar -xvf environment.tar -C /
-
-    - uses: seanmiddleditch/gha-setup-ninja@master
 
     - name: 'Configure the build'
       run: |
