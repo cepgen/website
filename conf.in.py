@@ -270,7 +270,7 @@ epub_exclude_files = ['search.html']
 
 # Breathe Configuration
 breathe_default_project = "CepGen"
-breathe_implementation_filename_extensions = ['.cxx', 'cpp', 'cc', '.C', '.f']
+breathe_implementation_filename_extensions = ['.cxx', 'cc', '.C', '.f']
 
 # Changelog configuration
 #changelog_render_changeset = "https://phab.hepforge.org/rCEPGEN%s"

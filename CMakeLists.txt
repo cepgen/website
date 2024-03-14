@@ -3,6 +3,8 @@ project(CepGen-website)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
 
+include($ENV{CEPGEN_PATH}/cmake/CepGenVersion.cmake)
+
 find_package(Doxygen REQUIRED)
 find_package(Sphinx REQUIRED)
 
