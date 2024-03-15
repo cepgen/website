@@ -1,6 +1,7 @@
 name: Documentation
 on:
   push:
+  workflow_dispatch:
 env:
   CEPGEN_PATH: /Package
 
@@ -14,11 +15,11 @@ jobs:
       image: 'laufor/ci-images:cepgen-fedora39'
       options: -v ${{ github.workspace }}:/Documentation
     steps:
+    - uses: actions/checkout@v4
     - name: 'Python requirements'
       run: |
         sudo pip install -r requirements.txt
 
-    - uses: actions/checkout@v4
     - uses: seanmiddleditch/gha-setup-ninja@master
 
     - name: 'Install SSH Key'
