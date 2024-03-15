@@ -21,6 +21,7 @@ This page is constantly evolving, but do not hesitate to contact us through the 
 :maxdepth: 1
 
 Downloads <https://github.com/cepgen/cepgen/releases>
+Doxygen <https://cepgen.hepforge.org/docs>
 changelog
 install
 usage
