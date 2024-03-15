@@ -16,6 +16,7 @@ jobs:
     - uses: snickerbockers/submodules-init@v4
     - name: 'Python requirements'
       run: |
+        git config --global --add safe.directory /Documentation
         sudo pip install -r requirements.txt
 
     - uses: seanmiddleditch/gha-setup-ninja@master
