@@ -61,7 +61,7 @@ jobs:
         remote_user: ${{ secrets.SSH_USER }}
         remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: 'Upload Sphinx documentation'
+    - name: 'Upload Doxygen documentation'
       uses: burnett01/rsync-deployments@7.0.0
       with:
         switches: -arvz --no-perms --no-owner --no-group --delete -O -q
