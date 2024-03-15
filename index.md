@@ -21,7 +21,6 @@ This page is constantly evolving, but do not hesitate to contact us through the 
 :maxdepth: 1
 
 Downloads <https://github.com/cepgen/cepgen/releases>
-Doxygen <https://cepgen.hepforge.org/docs>
 changelog
 install
 usage
@@ -47,6 +46,7 @@ output-formats
 lpair <processes-lpair>
 pptoff/pptoll <processes-pptoff>
 pptoww <processes-pptoww>
+processes-devel
 ```
 
 ```{toctree}
@@ -54,10 +54,11 @@ pptoww <processes-pptoww>
 :hidden: true
 :maxdepth: 1
 
-processes-devel
 structure-functions
 event
 integrators
 random-generators
 raw-modules
+
+Doxygen <https://cepgen.hepforge.org/docs>
 ```
