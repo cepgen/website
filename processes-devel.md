@@ -248,7 +248,7 @@ double dummy_f77_process_(void);
 
 This might get translated, for instance, into the following minimal working example (here using the free form Fortran coding convention):
 
-```{literalinclude} ../CepGenProcesses/Examples/dummy_f77_process.f
+```{literalinclude} {CEPGEN_PATH}CepGenProcesses/Examples/dummy_f77_process.f
 :language: fortran
 :linenos: true
 ```
@@ -266,7 +266,7 @@ The external methods exposed to the Fortran process through the include statemen
 ```{doxygenfunction} cepgen_kt_flux_hi_
 ```
 
-```{doxygenfunction}} cepgen_particle_charge_
+```{doxygenfunction} cepgen_particle_charge_
 ```
 
 ```{doxygenfunction} cepgen_particle_mass_
@@ -312,7 +312,7 @@ Or, following this nomenclature:
 
 For this version, the following process is already registered:
 
-```{literalinclude} ../CepGenProcesses/ProcessesWrapper.cpp
+```{literalinclude} {CEPGEN_PATH}CepGenProcesses/ProcessesWrapper.cpp
 :caption: List of registered external Fortran processes, as imported from ``CepGenProcesses/ProcessesWrapper.cpp``.
 :language: cpp
 ```

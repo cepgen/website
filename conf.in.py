@@ -40,12 +40,9 @@ release = u'@CEPGEN_VERSION@'
 # ones.
 extensions = [
     'breathe',
-    #'changelog',
     'myst_parser',
     'sphinx_git',
     'sphinx_github_changelog',
-    #'sphinx_github_style',
-    #'sphinxemoji.sphinxemoji',
     'sphinxcontrib.bibtex',
     'sphinx_togglebutton',
     'sphinx_toolbox.collapse',
@@ -58,7 +55,7 @@ extensions = [
 bibtex_bibfiles = ['@CMAKE_CURRENT_SOURCE_DIR@/_static/bibliography.bib']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['@CMAKE_CURRENT_SOURCE_DIR@/_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -83,7 +80,7 @@ language = 'en'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = [u'_build', 'README.md', 'CMakeLists.txt',  'build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [u'_build', 'README.md', 'CMakeLists.txt',  'build', 'Thumbs.db', 'requirements.txt' '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 #pygments_style = 'colorful'
@@ -246,50 +243,30 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'CepGen', u'CepGen Documentation',
-     author, 'CepGen', 'One line description of project.',
+     author, 'CepGen', 'A central exclusive processes event generator.',
      'Miscellaneous'),
 ]
 
+# Substitution
+def ultimateReplace(app, docname, source):
+    res = source[0]
+    for key in app.config.ultimate_replacements:
+        res = res.replace(key, app.config.ultimate_replacements[key])
+    source[0] = res
 
-# -- Options for Epub output -------------------------------------------------
-
-# Bibliographic Dublin Core info.
-epub_title = project
-
-# The unique identifier of the text. This can be a ISBN number
-# or the project homepage.
-#
-# epub_identifier = ''
-
-# A unique identification for the text.
-#
-# epub_uid = ''
-
-# A list of files that should not be packed into the epub file.
-epub_exclude_files = ['search.html']
+from os import path
+ultimate_replacements = {
+    "{CEPGEN_PATH}" : path.relpath('@CEPGEN_PATH@', path.dirname(__file__))+'/',
+}
 
 # Breathe Configuration
 breathe_default_project = "CepGen"
 breathe_implementation_filename_extensions = ['.cxx', 'cc', '.C', '.f']
 
 # Changelog configuration
-#changelog_render_changeset = "https://phab.hepforge.org/rCEPGEN%s"
-#changelog_render_pullreq = "https://phab.hepforge.org/D%s"
-#changelog_render_changeset = "https://github.com/cepgen/cepgen/commit/%s"
-#changelog_render_pullreq = "https://gitlab.cern.ch/lforthom/cepgen/-/merge_requests/%s"
-
-#linkcode_url = 'https://github.com/cepgen/cepgen'
-#linkcode_blob = 'master'
-#linkcode_link_text = 'Source'
-#def linkcode_resolve(domain, info):
-#    print('hahahaha')
-#    print('domain:',domain,'info:',info)
-
-viewcode_line_numbers = True
-
 sphinx_github_changelog_token = '@GH_API_TOKEN@'
 
 def setup(app):
     app.add_css_file('hacks.css')
-#    app.add_js_file('mathconf.js', type='text/x-mathjax-config')
-#    app.add_js_file('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML', async=True)
+    app.add_config_value('ultimate_replacements', {}, True)
+    app.connect('source-read', ultimateReplace)

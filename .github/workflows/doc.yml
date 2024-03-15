@@ -48,7 +48,7 @@ jobs:
       working-directory: /Documentation/build
       run: |
         ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Documentation/.raw_modules.html -e
-        cmake --build /Documentation/build -- Sphinx
+        cmake --build /Documentation/build
 
     - name: 'Upload documentation'
       uses: burnett01/rsync-deployments@5.2.1

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(CepGen-website)
 
+set(CEPGEN_PATH $ENV{CEPGEN_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
 
 include($ENV{CEPGEN_PATH}/cmake/CepGenVersion.cmake)
@@ -33,8 +34,7 @@ message(STATUS "Doxygen build started")
 add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
                    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
                    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
-                   COMMENT "Generating documentation with Doxygen"
-                   VERBATIM)
+                   COMMENT "Generating documentation with Doxygen")
 add_custom_target(Doxygen DEPENDS ${DOXYGEN_INDEX_FILE})
 
 # Sphinx build
@@ -42,17 +42,15 @@ add_custom_target(Doxygen DEPENDS ${DOXYGEN_INDEX_FILE})
 set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
 set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/output_html)
 set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
-set(SPHINX_IN ${CMAKE_CURRENT_SOURCE_DIR}/conf.in.py)
-set(SPHINX_OUT ${SPHINX_SOURCE}/conf.py)
+set(SPHINX_OUT ${CMAKE_CURRENT_SOURCE_DIR}/conf.py)
 
-configure_file(${SPHINX_IN} ${SPHINX_OUT} @ONLY)
+configure_file(${SPHINX_SOURCE}/conf.in.py ${SPHINX_OUT} @ONLY)
 
 message(STATUS "Sphinx found in ${SPHINX_EXECUTABLE}")
-add_custom_target(Sphinx
+add_custom_target(Sphinx ALL
                   COMMAND ${SPHINX_EXECUTABLE} -b html
                   -Dbreathe_projects.CepGen=${DOXYGEN_OUTPUT_DIR}/xml  # tell Breathe where to find the Doxygen output
                   ${SPHINX_SOURCE} ${SPHINX_BUILD}
                   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                   DEPENDS ${SPHINX_SOURCE}/index.md ${DOXYGEN_INDEX_FILE}
-                  #MAIN_DEPENDENCY ${SPHINX_OUT}
                   COMMENT "Generating documentation with Sphinx")
