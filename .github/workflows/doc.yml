@@ -13,6 +13,7 @@ jobs:
       options: -v ${{ github.workspace }}:/Documentation
     steps:
     - uses: actions/checkout@v4
+    - uses: snickerbockers/submodules-init@v4
     - name: 'Python requirements'
       run: |
         sudo pip install -r requirements.txt
