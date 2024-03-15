@@ -54,7 +54,7 @@ jobs:
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -arvz --no-perms --no-owner --no-group --delete -O -q
-        path: build/doc/output_html/
+        path: /Documentation/build/output_html/
         remote_path: ~/cepgen/public_html/
         remote_host: login.hepforge.org
         remote_port: 222
