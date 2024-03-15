@@ -1,15 +1,12 @@
 name: Documentation
 on:
-  #push:
+  push:
   workflow_dispatch:
 env:
   CEPGEN_PATH: /Package
 
 jobs:
-  cepgen:
-    uses: cepgen/cepgen/.github/workflows/build.yml@master
   doc:
-    needs: cepgen
     runs-on: ubuntu-latest
     container:
       image: 'laufor/ci-images:cepgen-fedora39'
