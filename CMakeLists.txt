@@ -9,7 +9,7 @@ include($ENV{CEPGEN_PATH}/cmake/CepGenVersion.cmake)
 find_package(Doxygen REQUIRED)
 find_package(Sphinx REQUIRED)
 
-set(CEPGEN_VERSION "${VERSION}") #FIXME
+set(CEPGEN_VERSION "${VERSION}")
 string(TIMESTAMP CURRENT_YEAR "%Y")
 
 # Doxygen build
@@ -22,7 +22,7 @@ set(DOXYGEN_INPUT_DIR "$ENV{CEPGEN_PATH}/src \\
 set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doxygen)
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIR}/xml/index.xml)
 set(DOXYGEN_XML YES)
-set(DOXYGEN_HTML NO)
+set(DOXYGEN_HTML YES)
 set(DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
 set(DOXYFILE_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
@@ -31,11 +31,11 @@ configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
 # Doxygen won't create this for us
 file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
 message(STATUS "Doxygen build started")
-add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
+add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/html/index.html
                    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
                    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
                    COMMENT "Generating documentation with Doxygen")
-add_custom_target(Doxygen DEPENDS ${DOXYGEN_INDEX_FILE})
+add_custom_target(Doxygen DEPENDS ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/html/index.html)
 
 # Sphinx build
 

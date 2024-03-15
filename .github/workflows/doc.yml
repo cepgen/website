@@ -50,12 +50,23 @@ jobs:
         ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Documentation/.raw_modules.html -e
         cmake --build /Documentation/build
 
-    - name: 'Upload documentation'
-      uses: burnett01/rsync-deployments@5.2.1
+    - name: 'Upload Sphinx website'
+      uses: burnett01/rsync-deployments@7.0.0
       with:
         switches: -arvz --no-perms --no-owner --no-group --delete -O -q
         path: build/output_html/
         remote_path: ~/cepgen/public_html/
+        remote_host: login.hepforge.org
+        remote_port: 222
+        remote_user: ${{ secrets.SSH_USER }}
+        remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: 'Upload Sphinx documentation'
+      uses: burnett01/rsync-deployments@7.0.0
+      with:
+        switches: -arvz --no-perms --no-owner --no-group --delete -O -q
+        path: build/doxygen/html/
+        remote_path: ~/cepgen/public_html/docs/
         remote_host: login.hepforge.org
         remote_port: 222
         remote_user: ${{ secrets.SSH_USER }}
