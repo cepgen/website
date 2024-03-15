@@ -7,6 +7,7 @@ furo>=2022.12.7
 myst-parser
 Sphinx>=5.3.0
 sphinx-basic-ng>=1.0.0b1
+sphinx-book-theme
 sphinx-git>=11.0.0
 sphinx-github-style
 sphinx-math-dollar>=1.2.1
