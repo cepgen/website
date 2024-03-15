@@ -1,6 +1,6 @@
 name: Documentation
 on:
-  push:
+  #push:
   workflow_dispatch:
 env:
   CEPGEN_PATH: /Package
@@ -30,10 +30,15 @@ jobs:
     - name: 'Add known hosts'
       run: mkdir -p ~/.ssh && ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
 
-    - name: 'CepGen fetch'
-      uses: actions/download-artifact@v4
+    - name: 'Download CepGen artifact'
+      uses: dawidd6/action-download-artifact@v3
       with:
+        github_token: ${{ secrets.GH_API_TOKEN }}
+        workflow: build.yml
+        workflow_conclusion: success
         name: build-env
+        repo: cepgen/cepgen
+
     - name: 'CepGen uncompress'
       run: |
         tar -xvf environment.tar -C /
