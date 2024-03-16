@@ -42,7 +42,6 @@ jobs:
 
     - name: 'Configure the build'
       run: |
-        git config --global --add safe.directory ${{ github.workspace }}
         git submodule update --init
         cmake -GNinja -B /Documentation/build -DGH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
 
