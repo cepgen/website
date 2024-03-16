@@ -9,7 +9,9 @@ Welcome to the home page of the CepGen Monte Carlo event generator, released und
 
 This documentation page attempts to summarise the various processes and configuration parameters currently, and soon to be handled by this piece of software.
 
-Please use the reference {cite:p}`Forthomme:2018ecc`: for citation:
+A reference manual describing all objects and their relationships can be found [here](https://cepgen.hepforge.org/docs/).
+
+Please use the reference {cite:p}`Forthomme:2018ecc` for citation:
 
 > [Comput. Phys. Commun. 271 (2022) 108225](https://doi.org/10.1016/j.cpc.2021.108225). [arXiv:1807.06059 \[hep-ph\]](https://arxiv.org/abs/1808.06059).
 

@@ -55,7 +55,7 @@ jobs:
     - name: 'Upload Sphinx website'
       uses: burnett01/rsync-deployments@7.0.0
       with:
-        switches: -arvz --inplace --no-perms --no-owner --no-group --delete -O -q
+        switches: -arvz --inplace --no-perms --no-owner --no-group -O -q
         path: build/output_html/
         remote_path: ~/cepgen/public_html/
         remote_host: login.hepforge.org
@@ -66,7 +66,7 @@ jobs:
     - name: 'Upload Doxygen documentation'
       uses: burnett01/rsync-deployments@7.0.0
       with:
-        switches: -arvz --inplace --no-perms --no-owner --no-group --delete -O -q
+        switches: -arvz --inplace --no-perms --no-owner --no-group -O -q
         path: build/doxygen/html/
         remote_path: ~/cepgen/public_html/docs/
         remote_host: login.hepforge.org
