@@ -55,5 +55,5 @@ add_custom_target(Sphinx ALL
                   -Dbreathe_projects.CepGen=${DOXYGEN_OUTPUT_DIR}/xml  # tell Breathe where to find the Doxygen output
                   ${SPHINX_SOURCE} ${SPHINX_BUILD}
                   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                  DEPENDS ${SPHINX_SOURCE}/index.md ${SPHINX_INDEX_FILE} ${DOXYGEN_INDEX_FILE}
+                  DEPENDS ${SPHINX_SOURCE}/index.md ${DOXYGEN_INDEX_FILE}
                   COMMENT "Generating documentation with Sphinx")
