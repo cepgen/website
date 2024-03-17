@@ -14,6 +14,8 @@ string(TIMESTAMP CURRENT_YEAR "%Y")
 
 # Doxygen build
 
+file(GLOB_RECURSE cepgen_sources ${CEPGEN_PATH}/CepGen*/*.cpp ${CEPGEN_PATH}/src/*.cc ${CEPGEN_PATH}/python/*.py)
+
 set(DOXYGEN_INPUT_DIR "$ENV{CEPGEN_PATH}/src \\
                        $ENV{CEPGEN_PATH}/CepGen \\
                        $ENV{CEPGEN_PATH}/CepGenAddOns \\
@@ -34,6 +36,7 @@ message(STATUS "Doxygen build started")
 add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/html/index.html
                    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
                    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
+                   DEPENDS ${cepgen_sources}
                    COMMENT "Generating documentation with Doxygen")
 add_custom_target(Doxygen DEPENDS ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/html/index.html)
 
@@ -52,5 +55,5 @@ add_custom_target(Sphinx ALL
                   -Dbreathe_projects.CepGen=${DOXYGEN_OUTPUT_DIR}/xml  # tell Breathe where to find the Doxygen output
                   ${SPHINX_SOURCE} ${SPHINX_BUILD}
                   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                  DEPENDS ${SPHINX_SOURCE}/index.md ${DOXYGEN_INDEX_FILE}
+                  DEPENDS ${SPHINX_SOURCE}/index.md ${SPHINX_INDEX_FILE} ${DOXYGEN_INDEX_FILE}
                   COMMENT "Generating documentation with Sphinx")
