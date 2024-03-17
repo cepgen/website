@@ -49,7 +49,7 @@ jobs:
     - name: 'Generate cepgen documentation'
       working-directory: /Documentation/build
       run: |
-        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Documentation/.raw_modules.html -e
+        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Documentation/.raw_modules.html -t 0 -g 0 -e
         cmake --build /Documentation/build
 
     - name: 'Upload Sphinx website'
