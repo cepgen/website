@@ -1,4 +1,4 @@
-# Raw list of module parameters
+# Modules parameters
 
 ```{raw} html
 :file: .raw_modules.html

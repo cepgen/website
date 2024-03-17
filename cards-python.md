@@ -1,8 +1,11 @@
 # Python configurations
 
-This format allows a better control over all run parameters through an increased granularity.
-It also allows to reduce the configuration overhead through Python’s `import` statements.
-Obviously, it requires the Python C API to be linked against the steering cards utils library.
+The default steering format for CepGen is Python (2/3) configuration files.
+
+Thanks to the huge modularity Python allows (e.g. through `import` statements, dynamic typing, and large choice of widely-used modules), the configuration overhead is largely reduced, allowing the user to concentrate on the physics process definition.
+
+The steering capability, and deployment of all overhead scripts relies on the `CepGenPython` add-ons library.
+This latter obviously relies on the Python C API presence (`python-devel` or `python-dev` packages on RPM/DEB managers respectively) on the machine at compile or installation time.
 
 Two core object types (both inheriting from Python’s `dict` containers) are imported in the scripting scope through the general statement:
 
@@ -10,7 +13,15 @@ Two core object types (both inheriting from Python’s `dict` containers) are im
 import Config.Core as cepgen
 ```
 
-These two types are `Module`, and `Parameters`.
+To ensure your environment is ready for this import, just open a Python shell and type the line above.
+In case of failure, it might be useful to ensure the `CEPGEN_PATH` environment variable is well set to your CepGen sources path (or to `/usr/local` if you installed CepGen through pre-compiled packages).
+You may also override the Python search path to let it know about the CepGen path too:
+
+```bash
+export PYTHONPATH=$CEPGEN_PATH:$PYTHONPATH
+```
+
+Once all set, you will have access to the two types described above: `Module`, and `Parameters`.
 The earlier is a subset of the latter, with the first string-type attribute defining the module name.
 
 The common usage for such a module definition is, for instance:
@@ -20,33 +31,17 @@ import Config.Core as cepgen
 module = cepgen.Module('my_first_module', foo = 'bar')
 ```
 
-Additionally, as of CepGen version 0.9.7, sequences of modules (inherited from Python's `list` containers) are introduced.
-These allow to define an ordered chain of modules to launch, for instance to modify the events content according to an external library
-or trigger a chain of output modules at each event generation.
+Additionally, as of CepGen version 0.9.7, a third base type, i.e. a sequence of modules (inherited from Python's `list` containers) is introduced.
+It allows to define an ordered chain of modules to launch, for instance to modify the events content according to an external library or trigger a chain of output modules at each event generation.
 
 In [this page](/python-containers.md), one can see an illustrated example of this `Module`/`Parameters`/`dict` and `Sequence`/`list` relations.
 
 Several blocks are required to be defined in a CepGen steering card.
 In the following sections, you may find a nonexhaustive (and evolving) list of such attributes.
 
-(pdg-block)=
-
-## `PDG` parameters block
-
-```{doxygennamespace} python::Config::PDG_cfi
-:members:
-```
-
-This {mod}`PDG` `Parameters` container object holding the list of particles definitions is parsed by the CepGen core at the initialisation level.
-It allows to specify new PDG members and propagate their properties for its usage in all parts of the framework.
-
-The {func}`registerParticle` helper function allows to add such a particle in one single line before the `process` block definition.
-
 ## `integrator` module block
 
-```{warning}
-Under construction
-```
+This collection of parameters allows the user to steer the cross section estimation part of the run.
 
 As of version 0.8 of CepGen, the three GSL implementations of the following integration algorithms are supported:
 
@@ -58,13 +53,48 @@ Since then, several add-ons were introduced, to quote a few:
 
 - a "`Naive`" Boost integrator, as documented in [the official Boost documentation](https://www.boost.org/doc/libs/1_81_0/libs/math/doc/html/math_toolkit/naive_monte_carlo.html),
 - an interface to `ROOT`'s [ROOT::Math::IntegratorOneDim](https://root.cern.ch/doc/master/classROOT_1_1Math_1_1IntegratorOneDim.html) and [ROOT::Math::IntegratorMultiDim](https://root.cern.ch/doc/master/classROOT_1_1Math_1_1IntegratorMultiDim.html) general purpose MC integrator algorithms, and the more specific interface to the [TFoam](https://root.cern.ch/doc/master/classTFoam.html) implementation of the FOAM algorithm {cite:p}`Jadach:2002kn`,
-- the various interfaces to the integrators of the `Cuba` suite: `cuba-vegas`, `cuba-suave`, `cuba-divonne`, and `cuba-cuhre`, as documented in [the official Cuba library documentation from FeynArts](https://feynarts.de/cuba/).
+- the various interfaces to the integrators of the `Cuba` suite: `cuba_vegas`, `cuba_suave`, `cuba_divonne`, and `cuba_cuhre`, as documented in [the official Cuba library documentation from FeynArts](https://feynarts.de/cuba/).
+
+### Integration modules parameters
+
+````{toggle}
+```{doxygennamespace} python::Config::Integration
+:members:
+```
+````
+
+### Usage
+
+To import one of these modules in your steering card, we advise you to load it into a private variable, and modify its attribute through cloning (to avoid strange behaviours in complex chains with Python's reference modification).
+For instance, to import (and steer) the Vegas algorithm:
+
+```python
+from Config.Integration.vegas_cfi import vegas as _integ
+# ...
+integrator = _integ.clone(
+    iterations = 5,
+    verbose = 0,
+    # ...
+)
+```
+
+But you can also define the module directly (instead of the Python-steered configuration loaded through the `import` method above, the [default module parameters](/raw-modules.md#integr) will be loaded instead)
 
 ## `generator` module block
 
-```{warning}
-Under construction
+This collection of parameters allows the user to steer the event generation part of the run.
+
+### Variable definition
+
+```{doxygenvariable} python::Config::generator_cfi::generator
 ```
+
+### Members
+
+- `numEvents`: number of events to generate in this run
+- `numPoints`: number of points to generate in integration time
+- `printEvery`: period at which the event content will be dump in the terminal when generating events
+- `numThreads`: number of threads to use to generate events (in CepGen multithread mode)
 
 ## `eventSequence` sequence block
 
@@ -97,6 +127,22 @@ eventSequence = cepgen.Sequence(
 ```
 ````
 
+(pdg-block)=
+
+## `PDG` parameters block
+
+The {mod}`PDG` module consists of a `PDG` container object holding the list of particles definitions is parsed by the CepGen core at the initialisation level, and utility functions.
+
+The former allows to specify new PDG members and propagate their properties for its usage in all parts of the framework.
+
+A single `registerParticle` utility function allows to add such a particle in one single line before the `process` block definition.
+
+````{toggle}
+```{doxygennamespace} python::Config::PDG_cfi
+:members:
+```
+````
+
 ## `process` module block
 
 This block comes as a required `Module` object defined in the general scope.
@@ -112,10 +158,12 @@ In that latter case, $p _ {z,1-2} = \pm \sqrt{s}/2$.
 Equivalently, a `pdgIds` pair/list of [integer-type PDG identifiers](http://pdg.lbl.gov/2007/reviews/montecarlorpp.pdf) (complete list handled {ref}`here <pdg-block>`) may be used to control beam particles type.
 A default `pdgIds = (2212, 2212)` initial state, or equivalently `(PDG.proton, PDG.proton)`, is used.
 
+````{toggle}
 ```{doxygenclass} python::Config::StructureFunctions_cff::StructureFunctions
 :members:
 :undoc-members:
 ```
+````
 
 The `structureFunctions` attribute specifies the $F _ {2/L}(\xbj,Q^2)$ structure function to use in the parameterisation of the incoming photon fluxes.
 The name of the structure functions set (see [the complete list here](/structure-functions.md)) has to be prepended by `StructureFunctions`
@@ -155,9 +203,8 @@ See the description page of each process to get a list of supported parameters t
 
 ## `output` module/sequence block
 
-```{warning}
-Under construction
-```
+Like the `integrator` block described above, the steering of output module(s) is operated through the import or definition of an `output` module or sequence.
+
 
 (configuration-card-example-python)=
 

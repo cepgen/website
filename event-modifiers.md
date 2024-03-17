@@ -18,7 +18,12 @@ Detailed description
 :no-link:
 ````
 
-______________________________________________________________________
+As for all named modules, an automatically generated list of the algorithms interfaces and their steering parameters can be found [here](/raw-modules.md#evtmod).
+
+## Hadronisers
+
+Hadronisers are a sub-class of modifiers that are affecting the outgoing particles kinematics, and possibly induce a reweighting of each event.
+They all derivate from a base object:
 
 ```{doxygenclass} cepgen::hadr::Hadroniser
 :outline:
@@ -33,12 +38,7 @@ Detailed description
 ```
 ````
 
-______________________________________________________________________
-
-## Hadronisers
-
-A full list of the algorithms and their parameters can be found [here](/raw-modules.md#evtmod).
-In particular, a sub-collection of algorithms currently supported is:
+A not exhaustive list of hadroniser interfacing modules is described below.
 
 ### `pythia6`
 
@@ -46,7 +46,7 @@ In particular, a sub-collection of algorithms currently supported is:
 ```
 
 ```{doxygenclass} cepgen::hadr::Pythia6Hadroniser
-:private-members:
+:outline:
 ```
 
 This legacy fragmentation module mimicks the original LPAIR Jetset interfacing.
@@ -63,7 +63,7 @@ Under construction
 ```
 
 ```{doxygenclass} cepgen::hadr::Pythia8Hadroniser
-:private-members:
+:outline:
 ```
 
 ## Event modifiers
@@ -74,7 +74,7 @@ Under construction
 ```
 
 ```{doxygenclass} cepgen::hadr::PhotosFilter
-:private-members:
+:outline:
 ```
 
 ### `TauolaFilter`
@@ -83,5 +83,5 @@ Under construction
 ```
 
 ```{doxygenclass} cepgen::hadr::TauolaFilter
-:private-members:
+:outline:
 ```

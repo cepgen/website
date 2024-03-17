@@ -18,7 +18,7 @@ Please use the reference {cite:p}`Forthomme:2018ecc` for citation:
 This page is constantly evolving, but do not hesitate to contact us through the project’s [GitHub issues page](https://github.com/cepgen/cepgen/issues).
 
 ```{toctree}
-:caption: 'Contents:'
+:caption: 'Basics:'
 :hidden: true
 :maxdepth: 1
 
@@ -26,7 +26,9 @@ Downloads <https://github.com/cepgen/cepgen/releases>
 changelog
 install
 usage
-zz-bibliography
+raw-modules
+Bibliography <zz-bibliography>
+Reference <https://cepgen.hepforge.org/docs>
 ```
 
 ```{toctree}
@@ -34,8 +36,8 @@ zz-bibliography
 :hidden: true
 :maxdepth: 1
 
-cards-lpair
 cards-python
+event
 event-modifiers
 output-formats
 ```
@@ -57,10 +59,8 @@ processes-devel
 :maxdepth: 1
 
 structure-functions
-event
 integrators
 random-generators
-raw-modules
+cards-lpair
 
-Doxygen <https://cepgen.hepforge.org/docs>
 ```
