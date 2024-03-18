@@ -47,10 +47,9 @@ output-formats
 :hidden: true
 :maxdepth: 2
 
-lpair <processes-lpair>
-processes-factorised
-MG5_aMC@NLO <processes-madgraph>
 processes-devel
+LPAIR process <processes-lpair>
+processes-factorised
 ```
 
 ```{toctree}
@@ -61,6 +60,7 @@ processes-devel
 structure-functions
 integrators
 random-generators
+MG5_aMC@NLO interface <processes-madgraph>
 cards-lpair
 
 ```

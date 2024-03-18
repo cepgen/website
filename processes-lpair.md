@@ -8,23 +8,14 @@ A phenomenological review of both this process and its first implementation in `
 
 ## Process-specific options
 
-### `mode`
-
-This enumeration allows to specify the kinematic regime to generate and the size of the phase space to perform the integration.
-It can take the following values:
-
-- `ProcessMode.ElasticElastic := 1`: elastic emission of photons from the incoming protons (default value if unspecified),
-- `ProcessMode.ElasticInelastic := 2 / ProcessMode.InelasticElastic := 3`: elastic scattering of one photon and an inelastic/semi-exclusive emission of the other photon, resulting in the excitation/fragmentation of the outgoing proton state,
-- `ProcessMode.InelasticInelastic := 4`: both protons fragmented in the final state.
-
-### `pair`
-
-This integer value allows the end-user to specify the PDG identifier of the lepton to be produced in the final state.
-It can hence take the following values:
-
-- `PDG.electron := 11` for the $e^+e^-$ pair production,
-- `PDG.muon := 13` for the $\mu^+\mu^-$ pair production, and
-- `PDG.tau := 15` for the $\tau^+\tau^-$ pair production.
+- `mode` (integer):  kinematic regime to generate and the size of the phase space to perform the integration. It can take the following values:
+    - `ProcessMode.ElasticElastic := 1`: elastic emission of photons from the incoming protons (default value if unspecified),
+    - `ProcessMode.ElasticInelastic := 2 / ProcessMode.InelasticElastic := 3`: elastic scattering of one photon and an inelastic/semi-exclusive emission of the other photon, resulting in the excitation/fragmentation of the outgoing proton state,
+    - `ProcessMode.InelasticInelastic := 4`: both protons fragmented in the final state.
+- `pair` (integer/PDG): PDG identifier of the lepton to be produced in the final state. It can hence take the following values:
+    - `PDG.electron := 11` for the $e^+e^-$ pair production,
+    - `PDG.muon := 13` for the $\mu^+\mu^-$ pair production, and
+    - `PDG.tau := 15` for the $\tau^+\tau^-$ pair production.
 
 ## Full object reference
 
