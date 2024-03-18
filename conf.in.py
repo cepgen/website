@@ -82,6 +82,7 @@ language = 'en'
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [u'_build',
                     'README.md', 'CMakeLists.txt', 'requirements.txt', 'build', 'doxygen-awesome-css',
+                    'Doxygen_index.md',
                     'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.

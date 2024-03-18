@@ -16,7 +16,8 @@ string(TIMESTAMP CURRENT_YEAR "%Y")
 
 file(GLOB_RECURSE cepgen_sources ${CEPGEN_PATH}/CepGen*/*.cpp ${CEPGEN_PATH}/src/*.cc ${CEPGEN_PATH}/python/*.py)
 
-set(DOXYGEN_INPUT_DIR "$ENV{CEPGEN_PATH}/src \\
+set(DOXYGEN_INPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Doxygen_index.md \\
+                       $ENV{CEPGEN_PATH}/src \\
                        $ENV{CEPGEN_PATH}/CepGen \\
                        $ENV{CEPGEN_PATH}/CepGenAddOns \\
                        $ENV{CEPGEN_PATH}/CepGenProcesses \\
@@ -34,7 +35,7 @@ configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
 file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
 message(STATUS "Doxygen build started")
 add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/html/index.html
-                   COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
+                   COMMAND Doxygen::doxygen ${DOXYFILE_OUT}
                    MAIN_DEPENDENCY ${DOXYFILE_OUT} ${DOXYFILE_IN}
                    DEPENDS ${cepgen_sources}
                    COMMENT "Generating documentation with Doxygen")
