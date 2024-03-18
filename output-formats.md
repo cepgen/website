@@ -77,7 +77,7 @@ Please note that this list is under constant evolution, you may contact us with 
 
 ### `dump`
 
-A simple text-based event dumper, useful for debugging the process and its kinematics, is steered using the {cpp:class}`cepgen::TextEventHandler` module.
+A simple text-based event dumper, useful for debugging the process and its kinematics, is steered using the {cepgen}`cepgen::TextEventHandler` module.
 
 ```{doxygenclass} cepgen::TextEventHandler
 :outline:
@@ -88,13 +88,13 @@ A simple text-based event dumper, useful for debugging the process and its kinem
 This output format handles the conversion into the [Les Houches standard definition](https://en.wikipedia.org/wiki/Les_Houches_Accords).
 Currently, two implementations of this export module exist:
 
-- a `Pythia 8` LHEF output module (described [here](http://home.thep.lu.se/~torbjorn/pythia82html/LesHouchesAccord.html)) as the default handler, {cpp:class}`cepgen::LHEFPythiaHandler`,
+- a `Pythia 8` LHEF output module (described [here](http://home.thep.lu.se/~torbjorn/pythia82html/LesHouchesAccord.html)) as the default handler, {cepgen}`cepgen::LHEFPythiaHandler`,
 
   ```{doxygenclass} cepgen::LHEFPythiaHandler
   :outline:
   ```
 
-- a `HepMC (v≥3)` implementation, {cpp:class}`cepgen::LHEFHepMCHandler`.
+- a `HepMC (v≥3)` implementation, {cepgen}`cepgen::LHEFHepMCHandler`.
 
   ```{doxygenclass} cepgen::LHEFHepMCHandler
   :outline:
@@ -122,9 +122,9 @@ It may be updated with future derivatives of [the HepMC writer base class](http:
 
 Alternatively, as from this version `3.1.0` of `HepMC`, the following output formats are also handled:
 
-- a `hepevt` ASCII format using the {cpp:class}`HepMC3::WriterHEPEVT` handler,
-- a `hepmc_root` format using the {cpp:class}`HepMC3::WriterRoot` export module,
-- a `hepmc_root_tree` using the {cpp:class}`HepMC3::WriterRootTree` module.
+- a `hepevt` ASCII format using the {cepgen}`HepMC3::WriterHEPEVT` handler,
+- a `hepmc_root` format using the {cepgen}`HepMC3::WriterRoot` export module,
+- a `hepmc_root_tree` using the {cepgen}`HepMC3::WriterRootTree` module.
 
 ### `promc`
 
@@ -151,32 +151,7 @@ Using the Python steering cards definition, a list of variables to be stored is 
 
 For this **text output format**, the default behaviour is storing one event per line with variables separated with an user-parameterisable separator (`separator` string parameter, default is the standard tabulation `\t`).
 
-The variable (here, `var` is used as an example) may be defined using the three following conventions:
-
-- `var` for event-level information (e.g. diffractive outgoing proton state multiplicity)
-
-- `var(role)` for the retrieval of a single particle with a given role
-
-  These particle roles may be one of the followings:
-  : - `ib1` and `ib2` (resp. `ob1` and `ob2`) for the incoming (resp. outgoing) beam kinematics,
-    - `pa1` and `pa2` for the parton/initiator particle emitted from the first/second incoming beam particle respectively,
-    - `cs` for the two-parton/initators system, and
-    - `int` for any intermediate $s$-channel particle exchange (depending on the process),
-
-- `var(id)` for the retrieval of a single particle with a given integer identifier
-
-- `var(role1,role2)` or `var(id1,id2)` for the multi-particles kinematics correlation.
-
-As from version `0.9.7` of CepGen, the following variables are handled for the particles (single, or combined) momentum definition:
-
-```{doxygenvariable} cepgen::utils::EventBrowser::m_mom_str_
-```
-
-In addition, particles momenta's correlations can be accessed through the following keywords:
-
-```{doxygenvariable} cepgen::utils::EventBrowser::m_two_mom_str_
-```
-
+The variable (here, `var` is used as an example) may be defined using the {cepgen}`cepgen::utils::EventBrowser` string-to-method conventions described [in the Event content definition page](/event.md).
 Two extra boolean parameters may also be fed to the module configuration:
 
 - `saveBanner`, to enable/disable the CepGen banner printout (containing useful information about the process and cuts definition), and
@@ -221,7 +196,7 @@ These two modules module allow to produce a **ROOT** {cite}`Brun:1997pa` **file*
   :outline:
   ```
 
-The histogramming utilitary follows the same procedure as introduced for the {cpp:class}`cepgen::TextHandler` module above to define the histograms list.
+The histogramming utilitary follows the same procedure as introduced for the {cepgen}`cepgen::TextHandler` module above to define the histograms list.
 
 As an example, the following `output` block may be used:
 
@@ -236,7 +211,7 @@ cepgen.Module('root_hist',
 )
 ```
 
-The tree handler may be used in parallel to the two {cpp:class}`ROOT::CepGenRun` and {cpp:class}`ROOT::CepGenEvent` helper reader objects for a compact analysis workflow:
+The tree handler may be used in parallel to the two {cepgen}`ROOT::CepGenRun` and {cepgen}`ROOT::CepGenEvent` helper reader objects for a compact analysis workflow:
 
 ````{toggle}
 ```{doxygenclass} ROOT::CepGenRun

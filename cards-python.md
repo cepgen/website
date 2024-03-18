@@ -82,7 +82,7 @@ But you can also define the module directly (instead of the Python-steered confi
 
 ## `generator` module block
 
-This collection of parameters allows the user to steer the event generation part of the run.
+This {cepgen}`collection of parameters <python::Config::generator_cfi::generator>` allows the user to steer the event generation part of the run.
 
 ### Variable definition
 

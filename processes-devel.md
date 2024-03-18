@@ -4,7 +4,7 @@
 
 Two possible tracks are given to the CepGen process developer: the implementation of the full matrix element, starting from the beams kinematics definition down to the event weight and event content, giving a full flexibility to the whole process definition, or using a parton-from-beam-factorised simplified implementation.
 
-The earlier relies on a sub-classing of the {cpp:class}`cepgen::Proc::Process` object, already providing some useful kinematics variables of interest:
+The earlier relies on a sub-classing of the {cepgen}`cepgen::Proc::Process` object, already providing some useful kinematics variables of interest:
 
 ````{toggle}
 ```{doxygenclass} cepgen::proc::Process
@@ -15,10 +15,10 @@ The earlier relies on a sub-classing of the {cpp:class}`cepgen::Proc::Process` o
 
 As noted above, to avoid code redundancy, the following helper accessors can be used to retrieve and set the various event content kinematics at the level of the process:
 
-- {cpp:func}`cepgen::proc::Process::pA`, and {cpp:func}`cepgen::proc::Process::pX`, for the positive-\$z\$ incoming/outgoing beam particle's kinematics ;
-- {cpp:func}`cepgen::proc::Process::pB`, and {cpp:func}`cepgen::proc::Process::pY`, for the negative-\$z\$ incoming/outgoing beam particle's kinematics ;
-- {cpp:func}`cepgen::proc::Process::q1`, and {cpp:func}`cepgen::proc::Process::q2`, for the positive, and negative-\$z\$ incoming parton kinematics ;
-- {cpp:func}`cepgen::proc::Process::pc`, with an index (starting at 0) accessor for the central system particles' 4-momentum.
+- {cepgen}`cepgen::proc::Process::pA`, and {cepgen}`cepgen::proc::Process::pX`, for the positive-\$z\$ incoming/outgoing beam particle's kinematics ;
+- {cepgen}`cepgen::proc::Process::pB`, and {cepgen}`cepgen::proc::Process::pY`, for the negative-\$z\$ incoming/outgoing beam particle's kinematics ;
+- {cepgen}`cepgen::proc::Process::q1`, and {cepgen}`cepgen::proc::Process::q2`, for the positive, and negative-\$z\$ incoming parton kinematics ;
+- {cepgen}`cepgen::proc::Process::pc`, with an index (starting at 0) accessor for the central system particles' 4-momentum.
 
 However, in most cases, such an access to the full beam dynamics and kinematics content is not necessarily required.
 Therefore, the so-called factorised processes definition can be useful for most of user cases.
@@ -34,7 +34,7 @@ A general description of this latter can be seen down this page.
 
 ### C++ interface
 
-The {cpp:class}`cepgen::proc::FactorisedProcess` helper derivated-class of the earlier is introduced to allow the parton emission part to be transparent to the process developper.
+The {cepgen}`cepgen::proc::FactorisedProcess` helper derivated-class of the earlier is introduced to allow the parton emission part to be transparent to the process developper.
 
 ```{doxygenclass} cepgen::proc::FactorisedProcess
 :outline:
@@ -49,8 +49,8 @@ The {cpp:class}`cepgen::proc::FactorisedProcess` helper derivated-class of the e
 
 As this object is pure virtual, the two following members have to be defined for any factorised process:
 
-- {cpp:func}`cepgen::proc::FactorisedProcess::prepareFactorisedPhaseSpace`, to initialise all the process-local kinematic variables (if needed) ;
-- {cpp:func}`cepgen::proc::FactorisedProcess::computeFactorisedMatrixElement` to retrieve the central matrix element weight that will be convoluted to the incoming parton fluxes and the event Jacobian to form the total matrix element weight.
+- {cepgen}`cepgen::proc::FactorisedProcess::prepareFactorisedPhaseSpace`, to initialise all the process-local kinematic variables (if needed) ;
+- {cepgen}`cepgen::proc::FactorisedProcess::computeFactorisedMatrixElement` to retrieve the central matrix element weight that will be convoluted to the incoming parton fluxes and the event Jacobian to form the total matrix element weight.
 
 The two-parton (or more generally the full central kinematics) can be generated automatically by CepGen according to the two scenarios enumerated above: collinear, or transverse momentum-dependent parton emission.
 
@@ -73,7 +73,7 @@ Which currently contains one instantiation, for 2-to-4 processes (such as `pptof
 ```
 ````
 
-Again, the same accessors as for {cpp:class}`cepgen::proc::Process` can be used for the retrieval of the event kinematics used in computing the event weight.
+Again, the same accessors as for {cepgen}`cepgen::proc::Process` can be used for the retrieval of the event kinematics used in computing the event weight.
 
 ### Fortran interface
 
@@ -83,7 +83,7 @@ In this page a summary and hands-on example of such a Fortran implementation and
 Before other things, you will have to provide the definition of your process and its topology for CepGen to handle it properly.
 This requires you to fill in a set of predefined common blocks shared between your process definition and the core CepGen instance.
 
-All these new processes are then linked to CepGen through the construction and association of each matrix element definition and interface to the {cpp:class}`cepgen::proc::FortranFactorisedProcess` object.
+All these new processes are then linked to CepGen through the construction and association of each matrix element definition and interface to the {cepgen}`cepgen::proc::FortranFactorisedProcess` object.
 
 ````{toggle}
 ```{doxygenclass} cepgen::proc::FortranFactorisedProcess

@@ -4,7 +4,7 @@ The modularity of CepGen also allows for multiple integration algorithms to be s
 Several interfaces to external algorithms are provided in the core and `CepGenAddOns` libraries.
 
 In the [Python](/cards-python.md) cards parsing these can be steered through the `integrator` keyword.
-All modules are derived from a common {cpp:class}`cepgen::Integrator` object, described below:
+All modules are derived from a common {cepgen}`cepgen::Integrator` object, described below:
 
 A full list of the algorithms and their parameters can be found [here](/raw-modules.md#integr).
 

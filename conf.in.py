@@ -238,6 +238,10 @@ ultimate_replacements = {
 breathe_default_project = "CepGen"
 breathe_implementation_filename_extensions = ['.cxx', 'cc', '.C', '.f']
 
+doxylink = {
+    'cepgen': ('@DOXYGEN_OUTPUT_DIR@/cepgen.tag', 'docs/'),
+}
+
 # Changelog configuration
 sphinx_github_changelog_token = '@GH_API_TOKEN@'
 
