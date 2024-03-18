@@ -38,4 +38,4 @@ The addon will directly call the `MG5_aMC` executable to produce a standalone C+
 :outline:
 ```
 
-As for any factorised process (as [`pptoff`](processes-pptoff.md) and [`pptoww`](/processes-pptoww.md)), both $\kt$-dependent, or collinear fluxes can be convoluted to the central matrix element to obtain the total beam-level cross section and event definition.
+As for any factorised process (as `pptoff` and `pptoww`), both $\kt$-dependent, or collinear fluxes can be convoluted to the central matrix element to obtain the total beam-level cross section and event definition.

@@ -45,11 +45,10 @@ output-formats
 ```{toctree}
 :caption: 'Processes:'
 :hidden: true
-:maxdepth: 1
+:maxdepth: 2
 
 lpair <processes-lpair>
-pptoff/pptoll <processes-pptoff>
-pptoww <processes-pptoww>
+processes-factorised
 MG5_aMC@NLO <processes-madgraph>
 processes-devel
 ```

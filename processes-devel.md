@@ -2,11 +2,7 @@
 
 # Processes development
 
-We recommend the implementation of all new processes in C++, as described below.
-However, we conveniently provide an interface to Fortran implementations for historical reasons.
-A general description of this latter can be seen down this page.
-
-In general, two possible tracks are given to the CepGen process developer: the implementation of the full matrix element, starting from the beams kinematics definition down to the event weight and event content, giving a full flexibility to the whole process definition, or using a parton-from-beam-factorised simplified implementation.
+Two possible tracks are given to the CepGen process developer: the implementation of the full matrix element, starting from the beams kinematics definition down to the event weight and event content, giving a full flexibility to the whole process definition, or using a parton-from-beam-factorised simplified implementation.
 
 The earlier relies on a sub-classing of the {cpp:class}`cepgen::Proc::Process` object, already providing some useful kinematics variables of interest:
 
@@ -28,40 +24,13 @@ However, in most cases, such an access to the full beam dynamics and kinematics 
 Therefore, the so-called factorised processes definition can be useful for most of user cases.
 
 ## Factorised processes
-
 ```{versionadded} 0.9
 ```
 
-CepGen attempts to give the user a relative freedom in its implementation of factorised, two-parton level processes.
-The kinematics of the latter can indeed be generated collinearly to the incoming beams kinematics (as done in major modern central exclusive processes generator), or with a physical transverse momentum, according to the approach described in [the reference papers](/zz-bibliography.md).
-The $\kt$-factorisation approach allows a direct factorisation of any hard process (e.g. photon- or gluon-induced productions) while accounting for transverse components of parton virtualities.
-For instance, a $pp\to p^{(\ast)}(\ggx)p^{(\ast)}$ matrix element can be factorised through the following formalism:
+We recommend the implementation of all new processes in C++, as described below.
+However, we conveniently provide an interface to Fortran implementations for historical reasons.
+A general description of this latter can be seen down this page.
 
-```{math}
-\mathrm d\sigma = \int \frac{\mathrm d^2{\mathbf q_{\mathrm T}^2}_1}{\pi {\mathbf q_{\mathrm T}^2}_1}
-                    {\cal F}_{\gamma/p}^{\rm el/inel}(x_1,{\mathbf q_{\mathrm T}^2}_1)
-                    \int \frac{\mathrm d^2{\mathbf q_{\mathrm T}^2}_2}{\pi {\mathbf q_{\mathrm T}^2}_2}
-                    {\cal F}_{\gamma/p}^{\rm el/inel}(x_2,{\mathbf q_{\mathrm T}^2}_2) ~ \mathrm d\sigma^\ast,
-```
-
-where $\mathcal F_{\gamma/p}^{\rm el/inel}(x_i,\vecqt_i)$ are unintegrated parton densities, and $\mathrm d\sigma^\ast$ the hard process factorised out of the total matrix element.
-
-### Unintegrated photon fluxes
-
-Elastic unintegrated photon densities are expressed as functions of the proton electric and magnetic form factors $G_E$ and $G_M$:
-
-```{math}
-\mathcal F_{\gamma/p}^{\rm el}(\xi,\vecqt^2) = \frac{\alpha}{\pi}\left[(1-\xi)\left(\frac{\vecqt^2}{\vecqt^2+\xi^2 m_p^2}\right)^2 F_E(Q^2)+\frac{\xi^2}{4}\left(\frac{\vecqt^2}{\vecqt^2+\xi^2 m_p^2}\right) F_M(Q^2)\right].
-```
-
-The inelastic contribution further requires both the diffractive state four-momentum norm $M_X$ and a [proton structure functions parameterisation](/structure-functions.md) as an input:
-
-```{math}
-\mathcal F_{\gamma/p}^{\rm inel}(\xi,\vecqt^2) = \frac{\alpha}{\pi}\Bigg[(1-\xi)\left(\frac{\vecqt^2}{\vecqt^2+\xi(M_X^2-m_p^2)+\xi^2 m_p^2}\right)^2\frac{F_2(\xbj,Q^2)}{Q^2+M_X^2-m_p^2}+{}\\
-  {}+\frac{\xi^2}{4}\frac{1}{\xbj^2} \left(\frac{\vecqt^2}{\vecqt^2+\xi(M_X^2-m_p^2)+\xi^2 m_p^2}\right) \frac{2\xbj F_1(\xbj,Q^2)}{Q^2+M_X^2-m_p^2}\Bigg],
-```
-
-with $\xbj = {Q^2}/({Q^2+M_X^2-m_p^2})$ the Bjorken scaling variable.
 
 ### C++ interface
 
