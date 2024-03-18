@@ -50,6 +50,7 @@ output-formats
 lpair <processes-lpair>
 pptoff/pptoll <processes-pptoff>
 pptoww <processes-pptoww>
+MG5_aMC@NLO <processes-madgraph>
 processes-devel
 ```
 
