@@ -26,7 +26,7 @@ ______________________________________________________________________
 ```
 
 ```{doxygenclass} cepgen::GSLRandomGenerator
-:private-members:
+:outline:
 ```
 
 ## ROOT random number generator
@@ -35,7 +35,7 @@ ______________________________________________________________________
 ```
 
 ```{doxygenclass} cepgen::ROOTRandomGenerator
-:private-members:
+:outline:
 ```
 
 ## STL random number generator
@@ -44,5 +44,5 @@ ______________________________________________________________________
 ```
 
 ```{doxygenclass} cepgen::STLRandomGenerator
-:private-members:
+:outline:
 ```

@@ -45,4 +45,4 @@ These are, to explicitely name a few,
 - JSON, XML, INFO-formatted configurations, as handled by the [Boost.PropertyTree](https://www.boost.org/doc/libs/1_84_0/doc/html/property_tree.html) serialisation library (requires `CepGenBoost` to be loaded).
 
 We can however assist you in producing a packaged version, fitting to your event generation scheme.
-Please contact us for more details.
+Please [fill in an issue](https://github.com/cepgen/cepgen/issues/new) or contact us for more details.

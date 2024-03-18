@@ -3,7 +3,9 @@
 
 # LPAIR’s $\ggll$
 
-The full description of this $pp \rightarrow p^{(\ast)}(\ggll)p^{(\ast)}$ process as previously implemented in `LPAIR` {cite}`Baranov:1991yq` can be reached through the `lpair` process in CepGen.
+The $pp \rightarrow p^{(\ast)}(\ggll)p^{(\ast)}$ process as previously implemented in the early 1990s in `LPAIR` {cite}`Baranov:1991yq` can be reached through the `lpair` process in CepGen.
+More generally, this implementation was designed to compute the cross-section and to generate events for the $\ggll$ process for ee, ep, and pp collisions.
+
 A phenomenological review of both this process and its first implementation in `LPAIR` may be found in {cite}`Vermaseren:1982cz`.
 
 ## Process-specific options
