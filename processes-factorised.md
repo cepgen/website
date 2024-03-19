@@ -48,20 +48,23 @@ with $\xbj = {Q^2}/({Q^2+M_X^2-m_p^2})$ the Bjorken scaling variable.
 
 ## Implementations
 
+#### Common options
+
+- `mode` (integer): kinematic regime to generate and the size of the phase space to perform the integration. It can take the following values:
+    - `ProcessMode.ElasticElastic := 1`: elastic emission of photons from the incoming protons (default value if unspecified),
+    - `ProcessMode.ElasticInelastic := 2 / ProcessMode.InelasticElastic := 3`: elastic scattering of one photon and an inelastic/semi-exclusive emission of the other photon, resulting in the excitation/fragmentation of the outgoing proton state,
+    - `ProcessMode.InelasticInelastic := 4`: both protons fragmented in the final state.
+
 ### $\ggff$ process
 
 The photon transverse momentum-dependant description of this process was previously developed in `PPtoLL`, and described in {cite}`daSilveira:2014jla`.
-It is defined as the `pptoll` process in CepGen.
+Since it now also supports the quark-antiquark production (thus all charged fermions), it is defined as the {cepgen}`PPtoFF` process in CepGen.
 
 #### Process-specific options
 
 - `method` (integer): switch between the two matrix element definitions:
     - `0`: on-shell amplitude,
     - `1`: off-shell amplitude.
-- `mode` (integer): kinematic regime to generate and the size of the phase space to perform the integration. It can take the following values:
-    - `ProcessMode.ElasticElastic := 1`: elastic emission of photons from the incoming protons (default value if unspecified),
-    - `ProcessMode.ElasticInelastic := 2 / ProcessMode.InelasticElastic := 3`: elastic scattering of one photon and an inelastic/semi-exclusive emission of the other photon, resulting in the excitation/fragmentation of the outgoing proton state,
-    - `ProcessMode.InelasticInelastic := 4`: both protons fragmented in the final state.
 - `pair` (integer/PDG): PDG identifier of the fermion pair to be produced in the final state. It can take the following values:
     - `PDG.electron := 11`: $e^+e^-$ pair production
     - `PDG.muon := 13`: $\mu^+\mu^-$ pair production
@@ -76,19 +79,13 @@ It is defined as the `pptoll` process in CepGen.
 
 ### $\ggww$ process
 
-The two-photon production of gauge boson pairs process, i.e. $pp \rightarrow p^{(\ast)}(\ggww)p^{(\ast)}$, is only defined using the $\kt$-factorisation approach.
-
-A full review of this process may be found in {cite}`Luszczak:2018ntp`.
+The two-photon production of gauge boson pairs process, i.e. $pp \rightarrow p^{(\ast)}(\ggww)p^{(\ast)}$, is implemented through the {cepgen}`PPtoWW` process object, featuring the on-shell and off-shell matrix elements reviewed in {cite}`Luszczak:2018ntp`.
 
 #### Process-specific options
 
 - `method` (integer): switch between the two matrix element definitions:
     - `0`: on-shell amplitude {cite}`Denner:1995jv`,
     - `1`: off-shell amplitude {cite}`Nachtmann:2005en,Nachtmann:2005ep`.
-- `mode` (integer): kinematic regime to generate and the size of the phase space to perform the integration. It can take the following values:
-    - `ProcessMode.ElasticElastic := 1`: elastic emission of photons from the incoming protons (default value if unspecified),
-    - `ProcessMode.ElasticInelastic := 2 / ProcessMode.InelasticElastic := 3`: elastic scattering of one photon and an inelastic/semi-exclusive emission of the other photon, resulting in the excitation/fragmentation of the outgoing proton state,
-    - `ProcessMode.InelasticInelastic := 4`: both protons fragmented in the final state.
 - `polarisationStates` (int): switch between all combinations of polarisation states to be included in the matrix element. It can take the following values:
     - `0`: all contributions,
     - `1`: longitudinal-longitudinal,
