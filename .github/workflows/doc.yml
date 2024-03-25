@@ -49,7 +49,7 @@ jobs:
     - name: 'Generate cepgen documentation'
       working-directory: /Documentation/build
       run: |
-        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDocGenerator -o /Documentation/.raw_modules.html -t 0 -g 0 -e
+        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDescribeModules -D "ctml<{useBS:on,pageTitle:,showGit:off,bare:on}" -o /Documentation/.raw_modules.html
         cmake --build /Documentation/build
 
     - name: 'Upload Sphinx/Doxygen website'
