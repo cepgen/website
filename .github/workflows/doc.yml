@@ -59,7 +59,7 @@ jobs:
     - name: 'Generate cepgen documentation'
       working-directory: /Documentation/build
       run: |
-        ${{ env.CEPGEN_PATH }}/build/bin/cepgenDescribeModules -D "ctml<{useBS:on,pageTitle:,showGit:off,bare:on}" -o /Documentation/.raw_modules.html
+        ${{ env.CEPGEN_PATH }}/bin/cepgenDescribeModules -D "ctml<{useBS:on,pageTitle:,showGit:off,bare:on}" -o /Documentation/.raw_modules.html
         cp ${{ env.CEPGEN_PATH }}/benchmark_*.html /Documentation/
         cmake --build /Documentation/build
 
