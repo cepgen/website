@@ -60,7 +60,7 @@ jobs:
       working-directory: /Documentation/build
       run: |
         ${{ env.CEPGEN_PATH }}/bin/cepgenDescribeModules -D "ctml<{useBS:on,pageTitle:,showGit:off,bare:on}" -o /Documentation/.raw_modules.html
-        cp ${{ env.CEPGEN_PATH }}/benchmark_*.html /Documentation/
+        cp ${{ env.CEPGEN_PATH }}/benchmark_*.html /Documentation/_static/
         cmake --build /Documentation/build
 
     - name: 'Upload Sphinx/Doxygen website'

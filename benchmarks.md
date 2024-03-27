@@ -3,10 +3,10 @@
 ## Generator modules
 
 ```{raw} html
-:file: benchmark_generator.html
+    <iframe src="_static/benchmark_generator.html" width="100%"></iframe>
 ```
 ## Integrator modules
 
 ```{raw} html
-:file: benchmark_integrator.html
+    <iframe src="_static/benchmark_integrator.html" width="100%"></iframe>
 ```
