@@ -24,7 +24,8 @@ set(DOXYGEN_INPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Doxygen_index.md \\
                        $ENV{CEPGEN_PATH}/CepGen \\
                        $ENV{CEPGEN_PATH}/CepGenAddOns \\
                        $ENV{CEPGEN_PATH}/CepGenProcesses \\
-                       $ENV{CEPGEN_PATH}/python")
+                       $ENV{CEPGEN_PATH}/python \\
+                       $ENV{CEPGEN_PATH}/python_modules")
 set(DOXYGEN_XML_DIR ${CMAKE_CURRENT_BINARY_DIR}/xml)
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_XML_DIR}/index.xml)
 set(DOXYGEN_XML YES)
