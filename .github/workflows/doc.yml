@@ -36,9 +36,19 @@ jobs:
         name: build-env
         repo: cepgen/cepgen
 
+    - name: 'Download CepGen tests artifact'
+      uses: dawidd6/action-download-artifact@v3
+      with:
+        github_token: ${{ secrets.GH_API_TOKEN }}
+        workflow: build.yml
+        workflow_conclusion: success
+        name: test-env
+        repo: cepgen/cepgen
+
     - name: 'CepGen uncompress'
       run: |
         tar -xvf environment.tar -C /
+        tar -xvf test-environment.tar -C /
 
     - name: 'Configure the build'
       run: |
