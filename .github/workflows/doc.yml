@@ -45,10 +45,20 @@ jobs:
         name: benchmark-env
         repo: cepgen/cepgen
 
+    - name: 'Download CepGen validation artifacts'
+      uses: dawidd6/action-download-artifact@v3
+      with:
+        github_token: ${{ secrets.GH_API_TOKEN }}
+        workflow: build.yml
+        workflow_conclusion: success
+        name: validation-env
+        repo: cepgen/cepgen
+
     - name: 'CepGen uncompress'
       run: |
         tar -xvf environment.tar -C /
-        tar -xvf benchmark-environment.tar -C /
+        tar -xvf benchmark-environment.tar -C /Documentation/_static/ Package --strip-components=1
+        tar -xvf validation-environment.tar -C /Documentation/_static/ Package/validation --strip-components=1
 
     - name: 'Configure the build'
       run: |
@@ -60,7 +70,6 @@ jobs:
       working-directory: /Documentation/build
       run: |
         ${{ env.CEPGEN_PATH }}/bin/cepgenDescribeModules -D "ctml<{useBS:on,pageTitle:,showGit:off,bare:on}" -o /Documentation/.raw_modules.html
-        cp ${{ env.CEPGEN_PATH }}/benchmark_*.html /Documentation/_static/
         cmake --build /Documentation/build
 
     - name: 'Upload Sphinx/Doxygen website'
