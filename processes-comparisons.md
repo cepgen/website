@@ -2,7 +2,7 @@
 
 ## $\ggll$ production processes
 
-### $k_{\rm T}-factorised matrix elements & LPAIR
+### $\kt$-factorised matrix elements & LPAIR
 
 Dilepton invariant mass (left) and transverse momentum (right):
 
@@ -47,7 +47,7 @@ Single lepton pseudorapidity $\eta$: for the leading (left), and subleading (rig
 :target: _static/validation/comparison_dilepton_kt_etalead.pdf
 ```
 
-```{image} _static/validation/comparison_dilepton_kt_eatsublead.png
+```{image} _static/validation/comparison_dilepton_kt_etasublead.png
 :width: 48%
 :target: _static/validation/comparison_dilepton_kt_etasublead.pdf
 ```
@@ -97,7 +97,7 @@ Single lepton pseudorapidity $\eta$: for the leading (left), and subleading (rig
 :target: _static/validation/comparison_dilepton_coll_etalead.pdf
 ```
 
-```{image} _static/validation/comparison_dilepton_coll_eatsublead.png
+```{image} _static/validation/comparison_dilepton_coll_etasublead.png
 :width: 48%
 :target: _static/validation/comparison_dilepton_coll_etasublead.pdf
 ```
