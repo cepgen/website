@@ -56,9 +56,9 @@ jobs:
 
     - name: 'CepGen uncompress'
       run: |
-        tar -xvf environment.tar -C /
-        tar -xvf benchmark-environment.tar -C /Documentation/_static/ Package --strip-components=1
-        tar -xvf validation-environment.tar -C /Documentation/_static/ Package/validation --strip-components=1
+        tar xvfz environment.tar.gz -C /
+        tar xvfz benchmark-environment.tar.gz -C /Documentation/_static/ Package --strip-components=1
+        tar xvfz validation-environment.tar.gz -C /Documentation/_static/ Package/validation --strip-components=1
 
     - name: 'Configure the build'
       run: |
