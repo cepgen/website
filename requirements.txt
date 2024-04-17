@@ -1,6 +1,6 @@
 autodocsumm>=0.2.9
 Babel>=2.10.3
-breathe>=4.34.0
+breathe>=4.35
 changelog>=0.5.8
 doxypypy
 furo>=2022.12.7
