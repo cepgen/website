@@ -8,8 +8,16 @@ These modellings are intensively used in the photon fluxes computation, and each
 All parameterisations derive from the following base class:
 
 ```{doxygenclass} cepgen::strfun::Parameterisation
-:members:
+:outline:
 ```
+Detailed description
+
+````{toggle}
+```{doxygenclass} cepgen::strfun::Parameterisation
+:members:
+:no-link:
+```
+````
 
 ```{note}
 All of these may be used and linked against any external code.
@@ -18,6 +26,15 @@ All of these may be used and linked against any external code.
 The parameterisation types handled in CepGen are listed in the {code}`cepgen::StructureFunctionsFactory`.
 
 Below, a semi-detailed review of a subset of the modellings handled in CepGen is presented.
+
+Whenever not specified explicitely in the modelling, the \$F_L\$ structure function can be computed from the $R$ modelling-dependent relation:
+
+```{math}
+F_L(\xbj,Q^2) = \left(1+\frac{4m_p^2\xbj^2}{Q^2}\right)\frac{R}{1+R}F_2(\xbj,Q^2).
+```
+
+Where this \$R\$ ratio can be evaluated for any \$(\\xbj,Q^2)\$ range of interest {cite}`Abe:1998ym,Beringer:1900zz,Sibirtsev:2013cga,Whitlow:1990gk`.
+
 
 ## Hybrid models
 
@@ -30,9 +47,8 @@ As the name suggests, this class of model combines multiple extrapolation models
 ````{note}
 - Legacy code: `302`
 - Structure functions modelled: \$W_1\$, \$W_2\$, \$F_2\$
-    ```{doxygenclass} cepgen::strfun::Shamov
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::Shamov`
+- [Module parameters](/raw-modules.md#strfunShamov)
 ````
 
 This model is designed for soft, low-$Q^2$ regimes under a broad range of $x_{\rm Bj}$. Several operation modes are proposed, steered by the `mode` parameter:
@@ -55,9 +71,8 @@ This model is designed for soft, low-$Q^2$ regimes under a broad range of $x_{\r
 - Legacy code: `303`
 - Structure functions modelled: \$F_2\$, \$F_L\$
 - Reference: {cite}`Kulagin:2021mee`
-    ```{doxygenclass} cepgen::strfun::KulaginBarinov
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::KulaginBarinov`
+- [Module parameters](/raw-modules.md#strfunKulaginBarinov)
 ````
 
 Resonances are modelled through Breit-Wigner contributions from five states. For the DIS part, a higher twist correction is available from a global QCD fit.
@@ -78,9 +93,8 @@ Resonances are modelled through Breit-Wigner contributions from five states. For
 - Legacy code: `304`
 - Structure functions modelled: \$F_1\$, \$F_2\$
 - Reference: {cite}`Bodek:2021bde`
-    ```{doxygenclass} cepgen::strfun::BodekKangXu
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::BodekKangXu`
+- [Module parameters](/raw-modules.md#strfunBodekKangXu)
 ````
 
 ```{image} _static/str-fun/bodek_f2.png
@@ -98,12 +112,11 @@ Resonances are modelled through Breit-Wigner contributions from five states. For
 ### Suri-Yennie
 
 ````{note}
-- Legacy code: `11`
+- Legacy code: `11` (and `12` for the alternative parameterisation)
 - Structure functions modelled: \$F_E\$, \$F_M\$
 - Reference: {cite}`Suri:1971yx`
-    ```{doxygenclass} cepgen::strfun::SuriYennie
-    :outline:
-    ```
+- Implementations: {cepgen}`cepgen::strfun::SuriYennie` and {cepgen}`cepgen::strfun::SuriYennieAlt`
+- Module parameters: [main](/raw-modules.md#strfunSuriYennie) and [alternative](/raw-modules.md#strfunSuriYennieAlt) parameterisations
 ````
 
 
@@ -126,9 +139,8 @@ It provides a reasonable description of SLAC data in the resonance and continuum
 - Legacy code: `12`
 - Structure function modelled: \$F_2\$
 - Reference: {cite}`Szczurek:1999wp`
-    ```{doxygenclass} cepgen::strfun::SzczurekUleshchenko
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::SzczurekUleshchenko`, relying on the GRV Fortran interpolation subroutine
+- [Module parameters](/raw-modules.md#strfunSzczurekUleshchenko)
 ````
 
 This set puts an emphasis on the low-to-intermediate \$Q^2\$ region and includes a smooth continuation to low-\$Q^2\$.
@@ -141,9 +153,8 @@ This set puts an emphasis on the low-to-intermediate \$Q^2\$ region and includes
 - Legacy code: `13`
 - Structure function modelled: \$F_2\$
 - Reference: {cite}`Block:2014kza`
-    ```{doxygenclass} cepgen::strfun::BlockDurandHa
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::BlockDurandHa`
+- [Module parameters](/raw-modules.md#strfunBlockDurandHa)
 ````
 
 % This set puts an emphasis on the low-to-intermediate $Q^2$ region and includes a smooth continuation to low-$Q^2$.
@@ -151,14 +162,35 @@ This set puts an emphasis on the low-to-intermediate \$Q^2\$ region and includes
 ### ALLM parameterisation
 
 ````{note}
-- Legacy codes: `201` (ALLM91), `202` (ALLM97), `203` (GD07p), `204` (GD11p)
-- Structure function modelled: \$F_2\$ [^f1]
+- Structure function modelled: \$F_2\$
 - References:
   > A full reference of this parameterisation by *Abramowicz et al.* can be found in {cite}`Abramowicz:1991xz` (`ALLM91`) and {cite}`Abramowicz:1997ms` (`ALLM97`).
   > The HERMES Collaboration refits of this modelling, labelled `GD07p` and `GD11p` may be found in {cite}`Airapetian:2011nu`.
-    ```{doxygenclass} cepgen::strfun::ALLM
-    :outline:
-    ```
+- Parameterisations:
+  - ALLM91
+    - Legacy code: `201`
+    - Implementation: {cepgen}`cepgen::strfun::ALLM91`
+    - [Module parameters](/raw-modules.md#strfunALLM91)
+  - ALLM97
+    - Legacy code: `202`
+    - Implementation: {cepgen}`cepgen::strfun::ALLM97`
+    - [Module parameters](/raw-modules.md#strfunALLM97)
+  - GD07p
+    - Legacy code: `203`
+    - Implementation: {cepgen}`cepgen::strfun::GD07p`
+    - [Module parameters](/raw-modules.md#strfunGD07p)
+  - GD11p
+    - Legacy code: `204`
+    - Implementation: {cepgen}`cepgen::strfun::GD11p`
+    - [Module parameters](/raw-modules.md#strfunGD11p)
+  - HHTALLM
+    - Legacy code: `206`
+    - Implementation: {cepgen}`cepgen::strfun::HHTALLM`
+    - [Module parameters](/raw-modules.md#strfunhhtALLM)
+  - HHTALLMFT
+    - Legacy code: `207`
+    - Implementation: {cepgen}`cepgen::strfun::HHTALLMFT`
+    - [Module parameters](/raw-modules.md#strfunhhtALLMft)
 ````
 
 In this continuum region modelling the \$F_2\$ proton structure function is parameterised as:
@@ -280,12 +312,11 @@ The ALLM91 tuning is fitted from all pre-HERA data points available.
 ### Fiore-Brasse
 
 ````{note}
-- Legacy code: `101`
+- Legacy code: `101` (core), and `104` (alternative)
 - Structure function modelled: \$F_2\$
 - References: {cite}`Fiore:2002re,Brasse:1976bf`
-    ```{doxygenclass} cepgen::strfun::FioreBrasse
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::FioreBrasse`, and {cepgen}`cepgen::strfun::FioreBrasseAlt`
+- Modules parameters: [core](/raw-modules.md#strfunFioreBrasse) and [alternative](/raw-modules.md#strfunFioreBrasseAlt) parameterisations
 ````
 
 
@@ -308,9 +339,8 @@ It is designed to reproduce well JLAB and SLAC data.
 - Legacy code: `102`
 - Structure functions modelled: \$F_2\$, \$F_L\$
 - Reference: {cite}`Bosted:2007xd`
-    ```{doxygenclass} cepgen::strfun::ChristyBosted
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::ChristyBosted`
+- [Module parameters](/raw-modules.md#strfunChristyBosted)
 ````
 
 
@@ -334,9 +364,8 @@ The set developed by M.E. Christy and P.E. Bosted is emphasised on the very-low 
 - Legacy code: `103`
 - Structure functions modelled: \$F_2\$
 - Reference: {cite}`Osipenko:2003bu`
-    ```{doxygenclass} cepgen::strfun::CLAS
-    :outline:
-    ```
+- Implementation: {cepgen}`cepgen::strfun::CLAS`
+- [Module parameters](/raw-modules.md#strfunCLAS)
 ````
 
 
@@ -357,28 +386,7 @@ This object has the form:
 :outline:
 ```
 
-Among these is the LHAPDF interface:
-
-````{note}
-- Legacy code:
-  : The legacy-equivalent signature follows the convention `1MSSSSSS`, where:
-
-    - `M` specifies the set of partons included in the sum rule:
-      : - `0`: all partons,
-        - `1`: valence quarks only, and
-        - `2`: sea quarks only.
-    - `SSSSSS` is the integer LHAPDF ID code for the selected PDF set.
-- Structure function modelled: \$F_2\$ [^f1]
-- Reference: {cite}`Whalley:2005nh`
-    ```{doxygenclass} cepgen::strfun::LHAPDFPartonic
-    :outline:
-    ```
-````
-
-
-If linked to LHAPDF, CepGen may build the \$F_2\$ structure function from quark/gluon PDF content.
-
-It is computed as follows:
+The conversion of quark/gluon PDF content into \$F_2\$ structure function is computed as follows:
 
 ```{math}
 F_2^{\rm val}(\xbj,Q^2) = \sum_{i=1}^{n_q} e_i^2 \left[q_i(\xbj,Q^2)-\bar q_i(\xbj,Q^2)\right]\\
@@ -386,10 +394,29 @@ F_2^{\rm sea}(\xbj,Q^2) = 2 \sum_{i=1}^{n_q} e_i^2 \bar q_i(\xbj,Q^2)\\
 F_2^{\rm tot}(\xbj,Q^2) = F_2^{\rm val}(\xbj,Q^2)+F_2^{\rm sea}(\xbj,Q^2)
 ```
 
-[^f1]: This (set of) structure function(s) is/are only defining $F_2$ and use the $R$ modelling-dependent relation:
+#### LHAPDF interface
 
-    ```{math}
-    F_L(\xbj,Q^2) = \left(1+\frac{4m_p^2\xbj^2}{Q^2}\right)\frac{R}{1+R}F_2(\xbj,Q^2).
-    ```
+````{note}
+- Legacy code: `401` ("standard" parameterisation), or a more complex scheme:
+  : The legacy-equivalent signature follows the convention `1MSSSSSS`, where:
 
-    Where this ratio can be evaluated for any \$(\\xbj,Q^2)\$ range of interest {cite}`Abe:1998ym,Beringer:1900zz,Sibirtsev:2013cga,Whitlow:1990gk`.
+    - `M` specifies the set of partons included in the sum rule:
+      : - `0`: all partons,
+        - `1`: valence quarks only, and
+        - `2`: sea quarks only.
+    - `SSSSSS` is the integer LHAPDF ID code for the selected PDF set.
+- Structure function modelled: \$F_2\$
+- Reference: {cite}`Whalley:2005nh`
+- Implementation: {cepgen}`cepgen::strfun::LHAPDFPartonic`
+- [Module parameters](/raw-modules.md#strfunlhapdf)
+````
+
+#### apfel++ interface
+
+````{note}
+- Legacy code: `405`
+- Structure function modelled: \$F_2\$
+- Implementation: {cepgen}`cepgen::apfelpp::EvolutionStructureFunctions`
+- [Module parameters](/raw-modules.md#strfunapfelppEvol)
+````
+

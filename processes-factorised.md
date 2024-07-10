@@ -18,7 +18,7 @@ As of version 1.2.0, two main parton emission types (and central matrix element 
 
 ## $\kt$-factorised processes
 
-The $\kt$ factorisation, described in detail in {cite}`daSilveira:2014jla` through the $\ggff$ process listed above, allows to provide a "physical" modelling of this $\kt$ dependence, commonly introduced as a simple gaussian smearing, e.g. in Pythia 8 (see the [`BeamRemnants:primordialKT`](https://pythia.org/manuals/pythia8311/BeamRemnants.html) flag).
+The $\kt$ factorisation, described in detail in {cite}`daSilveira:2014jla` through the $\ggff$ process listed above, allows to provide a "physical" modelling of this $\kt$ dependence, commonly introduced as a simple gaussian smearing, e.g. in Pythia 8 (see the [`BeamRemnants:primordialKT`](https://pythia.org/latest-manual/BeamRemnants.html) flag).
 
 For instance, a $pp\to p^{(\ast)}(\ggx)p^{(\ast)}$ matrix element can be factorised through the following formalism:
 

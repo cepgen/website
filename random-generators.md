@@ -34,7 +34,7 @@ ______________________________________________________________________
 ```{versionadded} 1.2.0
 ```
 
-```{doxygenclass} cepgen::ROOTRandomGenerator
+```{doxygenclass} cepgen::root::RandomGenerator
 :outline:
 ```
 
