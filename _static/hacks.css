@@ -24,3 +24,6 @@ div.highlight {
   padding: 0;
   margin: 0;
 }
+:target {
+  background-color: #f9ea9a;
+}

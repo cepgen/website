@@ -411,12 +411,15 @@ F_2^{\rm tot}(\xbj,Q^2) = F_2^{\rm val}(\xbj,Q^2)+F_2^{\rm sea}(\xbj,Q^2)
 - [Module parameters](/raw-modules.md#strfunlhapdf)
 ````
 
-#### apfel++ interface
+### APFEL++ interface
 
 ````{note}
 - Legacy code: `405`
-- Structure function modelled: \$F_2\$
+- Structure function modelled: \$F_2\$, \$F_L\$
+- Reference: {cite}`Bertone:2017gds`
 - Implementation: {cepgen}`cepgen::apfelpp::EvolutionStructureFunctions`
 - [Module parameters](/raw-modules.md#strfunapfelppEvol)
 ````
 
+This interface to the APFEL++ C++ rewriting of the famous APFEL library covers the computation of order-0/1/2/3 perturbative \$F_{2,L}\$ under several assumptions/modellings.
+In particular, two DIS processes are currently handled for the building of interpolation grids: charged currents and neutral currents.
