@@ -41,7 +41,7 @@ Additionally, a few parameters are steered to define the beams and their kinemat
 - `energies` (`vector<double>`) for the specification of positive-z and negative-z beam energies (in GeV)
 - `pz` (`vector<double>`) for the specification of positive-z and negative-z longitudinal beam momenta (in GeV/c)
 
-In the case of symmetric beam particles, the `sqrtS` (`double`) parameters may also be used to directly specify the two-beam centre-of-mass energy (in GeV).
+In the case of symmetric beam particles, the `sqrtS` (`double`) parameter may also be used to directly specify the two-beam centre-of-mass energy (in GeV).
 ```
 ````
 
