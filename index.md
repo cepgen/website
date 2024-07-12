@@ -47,9 +47,8 @@ output-formats
 :hidden: true
 :maxdepth: 2
 
+processes
 processes-devel
-LPAIR process <processes-lpair>
-processes-factorised
 ```
 
 ```{toctree}
