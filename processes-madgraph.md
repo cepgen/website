@@ -32,7 +32,7 @@ process = cepgen.Module('mg5_aMC',
 
 As seen above, the `process.processParameters.process` and `process.processParameters.model` strings are handling the `MG5_aMC` process to be generated, and the physics model considered in the operation.
 
-The addon will directly call the `MG5_aMC` executable to produce a CepGen-compatible runtime library through the specialisation of a [cepgen]`cepgen::MadGraphProcess` interface object.
+The addon will directly call the `MG5_aMC` executable to produce a CepGen-compatible runtime library through the specialisation of a {cepgen}`cepgen::MadGraphProcess` interface object.
 Therefore, a MadGraph-generated process shared library can be shipped by processes developers and used with any compatible version of CepGen to compute a cross section or generate events according to kinematic constraints.
 
 As for any factorised process (as `pptoff` and `pptoww`), both $\kt$-dependent, or collinear fluxes can be convoluted to the central matrix element to obtain the total beam-level cross section and event definition.
