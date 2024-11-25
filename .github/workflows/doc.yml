@@ -28,7 +28,7 @@ jobs:
       run: mkdir -p ~/.ssh && ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
 
     - name: 'Download CepGen artifact'
-      uses: dawidd6/action-download-artifact@v3
+      uses: dawidd6/action-download-artifact@v6
       with:
         github_token: ${{ secrets.GH_API_TOKEN }}
         workflow: build.yml
@@ -37,7 +37,7 @@ jobs:
         repo: cepgen/cepgen
 
     - name: 'Download CepGen benchmarking artifacts'
-      uses: dawidd6/action-download-artifact@v3
+      uses: dawidd6/action-download-artifact@v6
       with:
         github_token: ${{ secrets.GH_API_TOKEN }}
         workflow: build.yml
@@ -46,7 +46,7 @@ jobs:
         repo: cepgen/cepgen
 
     - name: 'Download CepGen validation artifacts'
-      uses: dawidd6/action-download-artifact@v3
+      uses: dawidd6/action-download-artifact@v6
       with:
         github_token: ${{ secrets.GH_API_TOKEN }}
         workflow: build.yml
