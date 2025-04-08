@@ -4,12 +4,12 @@ project(CepGen-website)
 set(CEPGEN_PATH $ENV{CEPGEN_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
 
-include($ENV{CEPGEN_PATH}/cmake/CepGenVersion.cmake)
+include($ENV{CEPGEN_PATH}/cmake/FindCepGen.cmake)
 
 find_package(Doxygen REQUIRED)
 find_package(Sphinx REQUIRED)
 
-set(CEPGEN_VERSION "${VERSION}")
+set(CEPGEN_VERSION "${CepGen_VERSION}")
 string(TIMESTAMP CURRENT_YEAR "%Y")
 
 set(SPHINX_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/output)
