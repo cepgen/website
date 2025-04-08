@@ -21,8 +21,8 @@ file(GLOB_RECURSE cepgen_sources ${CEPGEN_PATH}/CepGen*/*.cpp ${CEPGEN_PATH}/src
 
 set(DOXYGEN_INPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Doxygen_index.md \\
                        $ENV{CEPGEN_PATH}/src \\
+                       $ENV{CEPGEN_PATH}/addons \\
                        $ENV{CEPGEN_PATH}/CepGen \\
-                       $ENV{CEPGEN_PATH}/CepGenAddOns \\
                        $ENV{CEPGEN_PATH}/CepGenProcesses \\
                        $ENV{CEPGEN_PATH}/python \\
                        $ENV{CEPGEN_PATH}/python_modules")
