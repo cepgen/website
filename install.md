@@ -79,11 +79,10 @@ make # optionally, add -jN (N=number of parallel threads for compilation)
 
 This compilation will build a collection of required sub-libraries to be linked against any executable built on top of CepGen.:
 
-- `libCepGenCore` contains all physics constants, calculators, helpers, along with "non-physics" standard objects implementation, and nucleon structure function calculators objects,
-- `libCepGenProcesses` contains all processes definitions and implementations,
-- `libCepGenEvent` holds the definition of events and subleading particles objects (useful for analyses of CepGen outputs),
-- `libCepGenAddOns` provides a set of helper tools for the interfacing with external applications,
-- `libCepGenCards` for the input cards definition and handling part.
+- `libCepGen` contains all physics constants, calculators, helpers, along with standard objects implementation, nucleon structure function calculators objects, the definition of events and subleading particles objects (useful for analyses of CepGen outputs), and input cards definition and handling parts ;
+- `libCepGenProcesses` contains all processes definitions and implementations.
+
+In addition, if you enable their compilation using the `CMAKE_BUILD_ADDONS` flag, the collection of `libCepGenXXX` add-ons described above will be generated for your convenience.
 
 ```{note}
 If your usage requires the import of CepGen libraries and includes in your standard `PATH`, e.g. for the purpose of interfacing library development, run either
