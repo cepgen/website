@@ -28,23 +28,29 @@ jobs:
       run: mkdir -p ~/.ssh && ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
 
     - name: 'Download CepGen artifact'
-      uses: actions/download-artifact@v4
+      uses: dawidd6/action-download-artifact@v6
       with:
-        github-token: ${{ secrets.GH_API_TOKEN }}
+        github_token: ${{ secrets.GH_API_TOKEN }}
+        workflow: build.yml
+        workflow_conclusion: success
         name: install-env
-        repository: cepgen/cepgen
+        repo: cepgen/cepgen
 
     - name: 'Download CepGen benchmarking artifacts'
-      uses: actions/download-artifact@v4
+      uses: dawidd6/action-download-artifact@v6
       with:
-        github-token: ${{ secrets.GH_API_TOKEN }}
+        github_token: ${{ secrets.GH_API_TOKEN }}
+        workflow: build.yml
+        workflow_conclusion: success
         name: benchmark-env
         repo: cepgen/cepgen
 
     - name: 'Download CepGen validation artifacts'
-      uses: actions/download-artifact@v4
+      uses: dawidd6/action-download-artifact@v6
       with:
-        github-token: ${{ secrets.GH_API_TOKEN }}
+        github_token: ${{ secrets.GH_API_TOKEN }}
+        workflow: build.yml
+        workflow_conclusion: success
         name: validation-env
         repo: cepgen/cepgen
 
