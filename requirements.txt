@@ -5,7 +5,7 @@ changelog>=0.5.8
 doxypypy
 furo>=2022.12.7
 myst-parser
-Sphinx>=7.0
+Sphinx>=8.0
 sphinx-basic-ng>=1.0.0b1
 sphinx-book-theme
 sphinx-git>=11.0.0
