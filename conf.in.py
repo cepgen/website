@@ -43,7 +43,7 @@ extensions = [
     'myst_parser',
     'sphinx_git',
     'sphinx_github_changelog',
-    #'sphinxcontrib.bibtex',
+    'sphinxcontrib.bibtex',
     #'sphinxcontrib.doxylink',
     'sphinx_togglebutton',
     'sphinx_toolbox.collapse',
