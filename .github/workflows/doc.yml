@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 env:
   CEPGEN_PATH: /Package/install
+  LD_LIBRARY_PATH: /Package/install/lib64
 
 jobs:
   doc:
