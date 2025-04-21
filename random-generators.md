@@ -25,7 +25,7 @@ ______________________________________________________________________
 ```{versionadded} 1.2.0
 ```
 
-```{doxygenclass} cepgen::GSLRandomGenerator
+```{doxygenclass} GSLRandomGenerator
 :outline:
 ```
 
@@ -43,6 +43,6 @@ ______________________________________________________________________
 ```{versionadded} 1.2.0
 ```
 
-```{doxygenclass} cepgen::STLRandomGenerator
+```{doxygenclass} STLRandomGenerator
 :outline:
 ```

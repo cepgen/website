@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
 env:
-  CEPGEN_PATH: /Package
+  CEPGEN_PATH: /Package/install
 
 jobs:
   doc:
@@ -28,35 +28,29 @@ jobs:
       run: mkdir -p ~/.ssh && ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
 
     - name: 'Download CepGen artifact'
-      uses: dawidd6/action-download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
-        github_token: ${{ secrets.GH_API_TOKEN }}
-        workflow: build.yml
-        workflow_conclusion: success
-        name: build-env
-        repo: cepgen/cepgen
+        github-token: ${{ secrets.GH_API_TOKEN }}
+        name: install-env
+        repository: cepgen/cepgen
 
     - name: 'Download CepGen benchmarking artifacts'
-      uses: dawidd6/action-download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
-        github_token: ${{ secrets.GH_API_TOKEN }}
-        workflow: build.yml
-        workflow_conclusion: success
+        github-token: ${{ secrets.GH_API_TOKEN }}
         name: benchmark-env
         repo: cepgen/cepgen
 
     - name: 'Download CepGen validation artifacts'
-      uses: dawidd6/action-download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
-        github_token: ${{ secrets.GH_API_TOKEN }}
-        workflow: build.yml
-        workflow_conclusion: success
+        github-token: ${{ secrets.GH_API_TOKEN }}
         name: validation-env
         repo: cepgen/cepgen
 
     - name: 'CepGen uncompress'
       run: |
-        tar xvfz environment.tar.gz -C /
+        tar xvfz install-environment.tar.gz -C /
         tar xvfz benchmark-environment.tar.gz -C /Documentation/_static/ Package --strip-components=1
         tar xvfz validation-environment.tar.gz -C /Documentation/_static/ Package/validation --strip-components=1
 

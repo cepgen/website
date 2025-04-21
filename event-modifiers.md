@@ -45,7 +45,7 @@ A not exhaustive list of hadroniser interfacing modules is described below.
 ```{versionadded} 0.9.6
 ```
 
-```{doxygenclass} cepgen::hadr::Pythia6Hadroniser
+```{doxygenclass} cepgen::pythia6::Hadroniser
 :outline:
 ```
 
@@ -62,7 +62,7 @@ Under construction
 ```{versionadded} 0.9
 ```
 
-```{doxygenclass} cepgen::hadr::Pythia8Hadroniser
+```{doxygenclass} cepgen::pythia8::Hadroniser
 :outline:
 ```
 
@@ -73,7 +73,7 @@ Under construction
 ```{versionadded} 1.0
 ```
 
-```{doxygenclass} cepgen::hadr::PhotosFilter
+```{doxygenclass} cepgen::photos::PhotosFilter
 :outline:
 ```
 
@@ -82,6 +82,6 @@ Under construction
 ```{versionadded} 1.0
 ```
 
-```{doxygenclass} cepgen::hadr::TauolaFilter
+```{doxygenclass} cepgen::tauola::TauolaFilter
 :outline:
 ```

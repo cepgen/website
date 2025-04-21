@@ -2,30 +2,25 @@ cmake_minimum_required(VERSION 3.20)
 project(CepGen-website)
 
 set(CEPGEN_PATH $ENV{CEPGEN_PATH})
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
-
-include($ENV{CEPGEN_PATH}/cmake/FindCepGen.cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/cmake ${CEPGEN_PATH}/share/cmake)
 
 find_package(Doxygen REQUIRED)
 find_package(Sphinx REQUIRED)
+find_package(CepGen REQUIRED)
 
 set(CEPGEN_VERSION "${CepGen_VERSION}")
 string(TIMESTAMP CURRENT_YEAR "%Y")
-
 set(SPHINX_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/output)
-set(DOXYGEN_OUTPUT_DIR ${SPHINX_OUTPUT_DIR}/docs)
+file(GLOB_RECURSE cepgen_sources ${CepGen_INCLUDE_DIRS}/*.h ${CEPGEN_PATH}/python/*.py)
 
 # Doxygen build
-
-file(GLOB_RECURSE cepgen_sources ${CEPGEN_PATH}/CepGen*/*.cpp ${CEPGEN_PATH}/src/*.cc ${CEPGEN_PATH}/python/*.py)
-
 set(DOXYGEN_INPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Doxygen_index.md \\
-                       $ENV{CEPGEN_PATH}/src \\
-                       $ENV{CEPGEN_PATH}/addons \\
-                       $ENV{CEPGEN_PATH}/CepGen \\
-                       $ENV{CEPGEN_PATH}/CepGenProcesses \\
-                       $ENV{CEPGEN_PATH}/python \\
-                       $ENV{CEPGEN_PATH}/python_modules")
+                       ${CEPGEN_PATH}/src \\
+                       ${CEPGEN_PATH}/addons \\
+                       ${CEPGEN_PATH}/include \\
+                       ${CEPGEN_PATH}/python \\
+                       ${CEPGEN_PATH}/python_modules")
+set(DOXYGEN_OUTPUT_DIR ${SPHINX_OUTPUT_DIR}/docs)
 set(DOXYGEN_XML_DIR ${CMAKE_CURRENT_BINARY_DIR}/xml)
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_XML_DIR}/index.xml)
 set(DOXYGEN_XML YES)
@@ -46,7 +41,6 @@ add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/index.html
 add_custom_target(Doxygen DEPENDS ${DOXYGEN_INDEX_FILE} ${DOXYGEN_OUTPUT_DIR}/index.html)
 
 # Sphinx build
-
 set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
 set(SPHINX_INDEX_FILE ${SPHINX_OUTPUT_DIR}/index.html)
 set(SPHINX_OUT ${CMAKE_CURRENT_SOURCE_DIR}/conf.py)

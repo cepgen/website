@@ -43,9 +43,7 @@ For instance, it is highly recommended to install the following dependencies to 
 A set of add-ons specifically designed to ease your workflow when generating and storing events is also provided, given the following libraries are available on your system:
 
 - `CepGenPythia8`: [Pythia](https://pythia.org) version 8.1 or above, for the various particles decays and excited proton fragmentation, but also the LHEF event format generation,
-
 - `CepGenPythia6`: [Pythia](https://pythia.org/pythia6) version 6, for the legacy steering of particles decays and excited proton fragmentation,
-
 - `CepGenHepMC2` and `CepGenHepMC3` for the [HepMC](https://hepmc.web.cern.ch/hepmc/) version ≥ 2, to handle its various ASCII output formats,
 
   ```{note}
@@ -64,17 +62,31 @@ For instance, for a CepGen version `x.y.z` package:
 
 ```sh
 tar xvfz cepgen-x.y.z.tar.gz
-cd cepgen
-export CEPGEN_SOURCES=`pwd -P`
 ```
 
-Once you have set up the sources and downloaded/installed the required dependencies, create your building environment (here, we will use the general `CMake` convention `$CEPGEN_SOURCES/build`).
-The compilation is hence done with:
+Once you have set up the sources and downloaded/installed the required dependencies, create your building environment (following the [CMake convention](https://cmake.org/cmake/help/latest/guide/tutorial/A%20Basic%20Starting%20Point.html#exercise-1-building-a-basic-project), this latter is usually the `build/` directory).
+The compilation, and (optional, although very recommended) system installation is hence done with:
 
 ```sh
-mkdir $CEPGEN_SOURCES/build && cd $CEPGEN_SOURCES/build
-cmake $CEPGEN_SOURCES # or `cmake ..`, path to the sources make
+mkdir build && cd build
+cmake [-DCMAKE_INSTALL_PREFIX=/path/to/install] /path/to/cepgen/sources/
 make # optionally, add -jN (N=number of parallel threads for compilation)
+make install
+```
+
+Optionally, if [Ninja](https://ninja-build.org/) is installed on your system, you may add the extra `-GNinja` flag to the aforementioned `cmake` command, and launch the build using the following command:
+
+```sh
+cmake [-DCMAKE_INSTALL_PREFIX=/path/to/install] -GNinja /path/to/cepgen/sources/
+ninja
+ninja install
+```
+
+```{note}
+As documented [elsewhere](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html), the `CMAKE_INSTALL_PREFIX` CMake directive allows to specify manually the installation path for the full (libraries + headers) products.
+
+Typically, all CepGen headers (resp. libraries) will be installed in the `/path/to/install/include` (resp. `/path/to/install/lib` or `/path/to/install/lib64`) directories, with a few external dependencies (e.g. PDG catalogue, interpolation grids) in the `/path/to/install/share/CepGen` directory.
+Additionally, a `FindCepGen.cmake` directive is automatically generated in the `/path/to/install/cmake` folder to ease its linking to external libraries/user code.
 ```
 
 This compilation will build a collection of required sub-libraries to be linked against any executable built on top of CepGen.:
@@ -82,16 +94,7 @@ This compilation will build a collection of required sub-libraries to be linked 
 - `libCepGen` contains all physics constants, calculators, helpers, along with standard objects implementation, nucleon structure function calculators objects, the definition of events and subleading particles objects (useful for analyses of CepGen outputs), and input cards definition and handling parts ;
 - `libCepGenProcesses` contains all processes definitions and implementations.
 
-In addition, if you enable their compilation using the `CMAKE_BUILD_ADDONS` flag, the collection of `libCepGenXXX` add-ons described above will be generated for your convenience.
-
-```{note}
-If your usage requires the import of CepGen libraries and includes in your standard `PATH`, e.g. for the purpose of interfacing library development, run either
-
-- `make install` (as root), or
-- `CMAKE_INSTALL_PREFIX=/path/to/your/writeable/area make install` (to install locally ; do not forget to add this path to your `PATH` environment to be able to discover/run `cepgen` directly).
-
-This will install all required headers into the includes directory (e.g. `/usr/include`), and copy the shared objects into the library path (e.g. `/usr/lib64` or `/usr/lib`).
-```
+In addition, upon their availability on your system at compilation time, the collection of `libCepGenXXX` add-ons described above will be generated for your convenience.
 
 As described [here](/usage.md), several test executables can be linked against the CepGen libraries.
 

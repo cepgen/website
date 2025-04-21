@@ -77,9 +77,9 @@ Please note that this list is under constant evolution, you may contact us with 
 
 ### `dump`
 
-A simple text-based event dumper, useful for debugging the process and its kinematics, is steered using the {cepgen}`cepgen::TextEventHandler` module.
+A simple text-based event dumper, useful for debugging the process and its kinematics, is steered using the {cepgen}`TextEventHandler` module.
 
-```{doxygenclass} cepgen::TextEventHandler
+```{doxygenclass} TextEventHandler
 :outline:
 ```
 
@@ -88,21 +88,21 @@ A simple text-based event dumper, useful for debugging the process and its kinem
 This output format handles the conversion into the [Les Houches standard definition](https://en.wikipedia.org/wiki/Les_Houches_Accords).
 Currently, two implementations of this export module exist:
 
-- a `Pythia 8` LHEF output module (described [here](http://home.thep.lu.se/~torbjorn/pythia82html/LesHouchesAccord.html)) as the default handler, {cepgen}`cepgen::LHEFPythiaHandler`,
+- a `Pythia 8` LHEF output module (described [here](http://home.thep.lu.se/~torbjorn/pythia82html/LesHouchesAccord.html)) as the default handler, {cepgen}`cepgen::pythia8::LHEFEventExporter`,
 
-  ```{doxygenclass} cepgen::LHEFPythiaHandler
+  ```{doxygenclass} cepgen::pythia8::LHEFEventExporter
   :outline:
   ```
 
-- a `HepMC (v≥3)` implementation, {cepgen}`cepgen::LHEFHepMCHandler`.
+- a `HepMC (v≥3)` implementation, {cepgen}`cepgen::hepmc3::LHEFEventExporter`.
 
-  ```{doxygenclass} cepgen::LHEFHepMCHandler
+  ```{doxygenclass} cepgen::hepmc3::LHEFEventExporter
   :outline:
   ```
 
 ### `hepmc2`, `hepmc2_ascii`, ...
 
-```{doxygenclass} cepgen::HepMC2Handler
+```{doxygenclass} cepgen::hepmc2::EventExporter
 :outline:
 ```
 
@@ -111,7 +111,7 @@ By default, this version is used in older releases. It allows a `hepmc2` output 
 
 ### `hepmc`, `hepmc_root`, `hepevt`, ...
 
-```{doxygenclass} cepgen::HepMC3Handler
+```{doxygenclass} cepgen::hepmc3::EventExporter
 :outline:
 ```
 
@@ -131,7 +131,7 @@ Alternatively, as from this version `3.1.0` of `HepMC`, the following output for
 ```{versionadded} 0.9.8
 ```
 
-```{doxygenclass} cepgen::ProMCHandler
+```{doxygenclass} ProMCHandler
 :outline:
 ```
 
@@ -142,7 +142,7 @@ The support has been added for the [ProMC](http://jwork.org/wiki/PROMC) highly c
 ```{versionadded} 1.0.0
 ```
 
-```{doxygenclass} cepgen::TextVariablesHandler
+```{doxygenclass} TextVariablesHandler
 :outline:
 ```
 
@@ -186,13 +186,13 @@ These two modules module allow to produce a **ROOT** {cite}`Brun:1997pa` **file*
 
 - a list of histograms (stored as ROOT {cpp:class}`TH1D` objects) provided as an input for the earlier:
 
-  ```{doxygenclass} cepgen::ROOTHistsHandler
+  ```{doxygenclass} ROOTHistsHandler
   :outline:
   ```
 
 - or a set of **events** and **run information** (stored as ROOT {cpp:class}`TTree` objects) for the latter:
 
-  ```{doxygenclass} cepgen::ROOTTreeHandler
+  ```{doxygenclass} cepgen::root::EventExporter
   :outline:
   ```
 
