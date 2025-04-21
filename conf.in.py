@@ -48,9 +48,9 @@ extensions = [
     #'sphinx_togglebutton',
     #'sphinx_toolbox.collapse',
     'sphinx_math_dollar',
-    #'sphinx.ext.autodoc',
-    #'sphinx.ext.viewcode',
-    #'sphinx.ext.mathjax',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.mathjax',
 ]
 
 bibtex_bibfiles = ['@CMAKE_CURRENT_SOURCE_DIR@/_static/bibliography.bib']
