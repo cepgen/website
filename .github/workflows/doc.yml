@@ -10,7 +10,7 @@ jobs:
   doc:
     runs-on: ubuntu-latest
     container:
-      image: 'laufor/ci-images:cepgen-fedora39'
+      image: 'laufor/ci-images:cepgen-fedora40'
       options: -v ${{ github.workspace }}:/Documentation
     steps:
     - uses: actions/checkout@v4
