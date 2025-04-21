@@ -44,7 +44,7 @@ extensions = [
     'sphinx_git',
     #'sphinx_github_changelog',
     'sphinxcontrib.bibtex',
-    'sphinxcontrib.doxylink',
+    #'sphinxcontrib.doxylink',
     'sphinx_togglebutton',
     'sphinx_toolbox.collapse',
     'sphinx_math_dollar',
