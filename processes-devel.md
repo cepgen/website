@@ -68,7 +68,7 @@ The basic object of interest for this mapping is:
 Which currently contains one instantiation, for 2-to-4 processes (such as `pptoff` and `pptoww`):
 
 ````{toggle}
-```{doxygenclass} cepgen::PhaseSpaceGenerator2to4
+```{doxygenclass} PhaseSpaceGenerator2to4
 :protected-members:
 ```
 ````
