@@ -21,12 +21,12 @@ jobs:
     - uses: seanmiddleditch/gha-setup-ninja@master
 
     - name: 'Install SSH Key'
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+      run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
     - name: 'Add known hosts'
-      run: mkdir -p ~/.ssh && ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
+      run: ssh-keyscan -p 222 -H login.hepforge.org >> ~/.ssh/known_hosts
 
     - name: 'Download CepGen artifact'
       uses: dawidd6/action-download-artifact@v6
