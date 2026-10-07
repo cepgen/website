@@ -25,7 +25,7 @@ ______________________________________________________________________
 ```{versionadded} 1.0.0
 ```
 
-```{doxygenclass} cepgen::EventHarvester
+```{doxygenclass} EventHarvester
 :outline:
 ```
 
