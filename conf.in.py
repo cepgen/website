@@ -46,7 +46,7 @@ extensions = [
     #'sphinxcontrib.bibtex',
     'sphinxcontrib.doxylink',
     'sphinx_togglebutton',
-    'sphinx_toolbox.collapse',
+    #'sphinx_toolbox.collapse',
     'sphinx_math_dollar',
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
