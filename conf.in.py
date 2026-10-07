@@ -24,9 +24,9 @@ copyright = u'2013-@CURRENT_YEAR@, the CepGen Collaboration'
 author = u'Laurent Forthomme'
 
 # The short X.Y version
-version = u'@CEPGEN_VERSION@'
+#version = u'@CEPGEN_VERSION@'
 # The full version, including alpha/beta/rc tags
-release = u'@CEPGEN_VERSION@'
+#release = u'@CEPGEN_VERSION@'
 
 
 # -- General configuration ---------------------------------------------------
