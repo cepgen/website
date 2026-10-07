@@ -24,9 +24,9 @@ copyright = u'2013-@CURRENT_YEAR@, the CepGen Collaboration'
 author = u'Laurent Forthomme'
 
 # The short X.Y version
-version = u'@CEPGEN_VERSION@'
+#version = u'@CEPGEN_VERSION@'
 # The full version, including alpha/beta/rc tags
-release = u'@CEPGEN_VERSION@'
+#release = u'@CEPGEN_VERSION@'
 
 
 # -- General configuration ---------------------------------------------------
@@ -46,7 +46,7 @@ extensions = [
     #'sphinxcontrib.bibtex',
     'sphinxcontrib.doxylink',
     'sphinx_togglebutton',
-    'sphinx_toolbox.collapse',
+    #'sphinx_toolbox.collapse',
     'sphinx_math_dollar',
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
@@ -109,9 +109,9 @@ html_logo = '@CMAKE_CURRENT_SOURCE_DIR@/_static/small-cepgen-logo.png'
 #html_theme = 'sphinx_rtd_theme'
 #html_theme = 'alabaster'
 #html_theme = 'karma_sphinx_theme'
-#html_theme = 'furo'
+html_theme = 'furo'
 #html_theme = 'piccolo_theme'
-html_theme = 'sphinx_book_theme'
+#html_theme = 'sphinx_book_theme'
 
 html_extra_path = ['@CMAKE_CURRENT_SOURCE_DIR@/.htaccess']
 

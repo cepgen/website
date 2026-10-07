@@ -17,6 +17,9 @@ file(GLOB_RECURSE cepgen_sources ${CepGen_INCLUDE_DIRS}/*.h ${CEPGEN_PATH}/pytho
 set(DOXYGEN_INPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Doxygen_index.md \\
                        ${CEPGEN_PATH}/src \\
                        ${CEPGEN_PATH}/addons \\
+                       ${CEPGEN_PATH}/../python \\
+                       ${CEPGEN_PATH}/../src \\
+                       ${CEPGEN_PATH}/../addons \\
                        ${CEPGEN_PATH}/include \\
                        ${CEPGEN_PATH}/python \\
                        ${CEPGEN_PATH}/python_modules")

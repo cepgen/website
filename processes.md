@@ -124,12 +124,6 @@ Since it now also supports the quark-antiquark production (thus all charged ferm
     - `PDG.tau := 15`: $\tau^+\tau^-$ pair production
     - `PDG.down`, `PDG.up`, `PDG.strange`, `PDG.charm`, `PDG.bottom`, `PDG.top` (or equivalently `1-6`): quark pair production.
 
-##### Full object reference
-
-```{doxygenclass} PPtoFF
-:outline:
-```
-
 #### $\ggww$ process
 
 The two-photon production of gauge boson pairs process, i.e. $pp \rightarrow p^{(\ast)}(\ggww)p^{(\ast)}$, is implemented through the {cepgen}`PPtoWW` process object, featuring the on-shell and off-shell matrix elements reviewed in {cite}`Luszczak:2018ntp`.
@@ -145,8 +139,3 @@ The two-photon production of gauge boson pairs process, i.e. $pp \rightarrow p^{
     - `2`: longitudinal-transverse,
     - `3`: transverse-longitudinal,
     - `4`: transverse-transverse.
-
-##### Full object reference
-
-```{doxygenclass} PPtoWW
-:outline:
