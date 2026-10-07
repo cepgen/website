@@ -40,6 +40,36 @@ Where this \$R\$ ratio can be evaluated for any \$(\\xbj,Q^2)\$ range of interes
 
 As the name suggests, this class of model combines multiple extrapolation models valid in multiple kinematic ranges into a set of uniform, continuous structure functions.
 
+(luxlike)=
+
+### LUX-like
+
+````{note}
+- Legacy code: `301`
+- Structure functions modelled: \$F_2\$
+- Implementation: {cepgen}`cepgen::strfun::Schaefer`
+- [Module parameters](/raw-modules.md#strfunLUXLike)
+````
+
+This model covers a wide part of the \$(x_{\rm{Bj}}, Q^2)\$ phase space through a \$F_2\$ mapping of the three main kinematic regions and a smooth transition between these:
+
+- the resonances part, covering the low-\$w\$, high-\$x_{\rm{Bj}}\$ kinematics cases, and often expressed as a more or less complex fit of resonances data from fixed-target experiments ;
+- the high-\$\Q^2\$ perturbative region, expressed from parton distribution functions (see below),
+- the intermediate, continuum region.
+
+By default, the standard LUX-like implementation in CepGen uses the following three parameterisations:
+
+- Christy-Bosted, for the resonances region,
+- a MSTW fit of the perturbative regime experimental data,
+- the GD11p flavour of the ALLM continuum structure functions.
+
+```{image} _static/str-fun/luxlike_f2.png
+:width: 48%
+```
+```{image} _static/str-fun/luxlike_fl.png
+:width: 48%
+```
+
 (shamov)=
 
 ### Shamov
@@ -401,7 +431,7 @@ F_2^{\rm tot}(\xbj,Q^2) = F_2^{\rm val}(\xbj,Q^2)+F_2^{\rm sea}(\xbj,Q^2)
   : The legacy-equivalent signature follows the convention `1MSSSSSS`, where:
 
     - `M` specifies the set of partons included in the sum rule:
-      : - `0`: all partons,
+        - `0`: all partons,
         - `1`: valence quarks only, and
         - `2`: sea quarks only.
     - `SSSSSS` is the integer LHAPDF ID code for the selected PDF set.
